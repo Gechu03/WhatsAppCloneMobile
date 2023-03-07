@@ -9,15 +9,10 @@ const ChatList = ({listaMensajes}) => {
    
     <FlatList
       data={listaMensajes}
-      renderItem={({ item }) => <ChatListItem styles={styles.list} chat={item} />} />
+      renderItem={({ item }) => <ChatListItem chat={item} />} />
    
   )
 }
 
-const styles = StyleSheet.create({
-  list: {
-    borderTopColor: 'black',
-  },
-})
 
 export default ChatList
