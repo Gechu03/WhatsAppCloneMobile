@@ -1,12 +1,24 @@
-import { View, Text } from 'react-native'
+import { View, Text,StyleSheet } from 'react-native'
 import React from 'react'
+import mensajes from '../../assets/data/chats.json'
+import ChatList from '../molecules/chatsList'
 
-import ChatList from '../atoms/chatListItem'
 
 const ChatScreen = () => {
   return (
-    <ChatList data={Chats}/>
+    <View style={styles.container}>
+      <ChatList listaMensajes={mensajes}/>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+
+  },
+});
 
 export default ChatScreen

@@ -1,15 +1,23 @@
-import {FlatList } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import ChatListItem from '../atoms/chatListItem'
-import chats from '../../assets/data/chats.json'
+import mensajes from '../../assets/data/chats.json'
 
-const ChatList = (data) => {
-  
+const ChatList = ({listaMensajes}) => {
+
   return (
-   <FlatList
-      data={chats}
-      renderItem={({item}) => <ChatListItem chat={item}/>}/>
+   
+    <FlatList
+      data={listaMensajes}
+      renderItem={({ item }) => <ChatListItem styles={styles.list} chat={item} />} />
+   
   )
 }
+
+const styles = StyleSheet.create({
+  list: {
+    borderTopColor: 'black',
+  },
+})
 
 export default ChatList
