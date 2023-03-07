@@ -26,7 +26,6 @@ const ListarComponentes = ({listaMensajes, tipo='chat'}) => {
 const styles = StyleSheet.create({
   listadoMensajes: {
     padding: 10,
-    
   }
 })
 

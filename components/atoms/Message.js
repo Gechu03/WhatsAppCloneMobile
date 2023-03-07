@@ -34,6 +34,15 @@ const styles = StyleSheet.create({
       padding: 10,
       borderRadius: 15,
       maxWidth: '80%',
+
+      shadowColor: 'black',
+      shadowOffset: {
+         width: 0,
+         height: 1,
+      },
+      shadowOpacity: 0.18,
+      shadowRadius: 1,
+      elevation:  2,
    },
    time:{
       color:'gray',
