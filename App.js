@@ -9,8 +9,7 @@ import ChatScreen from './components/screens/ChatScreen';
 export default function App() {
   return (
     <View style={styles.container}>
-
-      {/* <ListOfChatsScreen />   */}
+       {/* <ListOfChatsScreen />    */}
       <ChatScreen />
       <StatusBar style="auto" />
 
