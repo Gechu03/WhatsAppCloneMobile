@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native';
-import relativeTime  from 'dayjs/plugin/relativeTime'
-import  dayjs  from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
+import dayjs from 'dayjs';
 import { Text, StyleSheet } from 'react-native'
 
 dayjs.extend(relativeTime)
@@ -11,19 +11,19 @@ const Message = ({ mensaje }) => {
       return mensaje.user.id === 'u1';
    };
 
-   
-      return (
-         <View style={[styles.container,
-            {
-               backgroundColor: isMyMessage() ? '#DCF8C5' : 'white',
-               alignSelf: isMyMessage() ? 'flex-end' : 'flex-start'
-         },]}>
-            <Text>{mensaje.text}</Text>
-            <Text style={styles.time}>{dayjs(mensaje.createdAt).fromNow(true)}</Text>
-         </View>
-      )
-   
-   
+
+   return (
+      <View style={[styles.container,
+      {
+         backgroundColor: isMyMessage() ? '#DCF8C5' : 'white',
+         alignSelf: isMyMessage() ? 'flex-end' : 'flex-start'
+      },]}>
+         <Text>{mensaje.text}</Text>
+         <Text style={styles.time}>{dayjs(mensaje.createdAt).fromNow(true)}</Text>
+      </View>
+   )
+
+
 }
 
 const styles = StyleSheet.create({
@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
       },
       shadowOpacity: 0.18,
       shadowRadius: 1,
-      elevation:  2,
+      elevation: 2,
    },
-   time:{
-      color:'gray',
-      alignSelf:'flex-end'
+   time: {
+      color: 'gray',
+      alignSelf: 'flex-end'
    },
 });
 

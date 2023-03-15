@@ -1,24 +1,24 @@
-import {View, Text, StyleSheet, TextInput} from 'react-native'
-import {AntDesign, MaterialIcons} from '@expo/vector-icons'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { AntDesign, MaterialIcons } from '@expo/vector-icons'
 import { useState } from 'react';
 
 function InputBox() {
 
-   const onSendHandler = (props) =>{
-      
+   const onSendHandler = (props) => {
+
       console.warn(inputValue)
       setInputValue('')
    }
 
-   const [inputValue , setInputValue] = useState('');
+   const [inputValue, setInputValue] = useState('');
 
-  return (
-    <View style={styles.container}>
-      <AntDesign  name='plus' size={20} color='royalblue' />
-      <TextInput value={inputValue} onChangeText={setInputValue} style={styles.input} placeholder='type your massage...'/>
-      <MaterialIcons onPress={onSendHandler} style={styles.send} name='send' size={16} color='white' />
-    </View>
-  )
+   return (
+      <View style={styles.container}>
+         <AntDesign name='plus' size={20} color='royalblue' />
+         <TextInput value={inputValue} onChangeText={setInputValue} style={styles.input} placeholder='type your massage...' />
+         <MaterialIcons onPress={onSendHandler} style={styles.send} name='send' size={16} color='white' />
+      </View>
+   )
 }
 
 const styles = StyleSheet.create({
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
       paddingVertical: 10,
       justifyContent: 'space-around',
       alignItems: 'center',
-      
+
    },
    input: {
       flex: 1,

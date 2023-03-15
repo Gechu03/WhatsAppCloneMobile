@@ -4,22 +4,22 @@ import ChatListItem from '../atoms/chatListItem'
 import mensajes from '../../assets/data/chats.json'
 import Message from '../atoms/Message'
 
-const ListarComponentes = ({listaMensajes, tipo='chat'}) => {
-  if(tipo === 'chat'){
-    return(
-    <FlatList
-    data={listaMensajes}
-    renderItem={({ item }) => <ChatListItem chat={item} />} />
-    )
-    
-  }else if (tipo === 'mensajes'){
-    return(
+const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
+  if (tipo === 'chat') {
+    return (
       <FlatList
-      inverted
-      data={listaMensajes}
-      style={styles.listadoMensajes}
-      renderItem={({ item }) => <Message mensaje={item}  />} />
-      )
+        data={listaMensajes}
+        renderItem={({ item }) => <ChatListItem chat={item} />} />
+    )
+
+  } else if (tipo === 'mensajes') {
+    return (
+      <FlatList
+        inverted
+        data={listaMensajes}
+        style={styles.listadoMensajes}
+        renderItem={({ item }) => <Message mensaje={item} />} />
+    )
   }
 }
 

@@ -8,6 +8,7 @@ const ListOfChatsScreen = () => {
   return (
     <View style={styles.container} >
       <ListarComponentes listaMensajes={mensajes} tipo='chat' />
+      
     </View>
   )
 }

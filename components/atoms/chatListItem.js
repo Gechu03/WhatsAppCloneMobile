@@ -1,14 +1,18 @@
 import dayjs from 'dayjs';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import { Text, View, Image, StyleSheet, Pressable } from 'react-native';
 import relativeTime from "dayjs/plugin/relativeTime"
+import { useNavigation } from '@react-navigation/native';
 
 
 
-const ChatListItem = ({chat}) => {
+const ChatListItem = ({ chat }) => {
    dayjs.extend(relativeTime);
-   return(
-      <View id={chat?.id} style={styles.container}>
-         <Image style={styles.image} source={{uri: chat?.user?.image ?? 'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg'}} />
+
+   const navigation = useNavigation();
+
+   return (
+      <Pressable onPress={() => navigation.navigate('Chat', {id: chat.id, name: chat?.user?.name ?? 'error'})} id={chat?.id} style={styles.container}>
+         <Image style={styles.image} source={{ uri: chat?.user?.image ?? 'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg' }} />
          <View style={styles.content}>
             <View style={styles.messageInfo}>
                <Text numberOfLines={1} style={styles.name}>{chat?.user?.name}</Text>
@@ -16,12 +20,12 @@ const ChatListItem = ({chat}) => {
             </View>
             <Text numberOfLines={2} style={styles.date}>{chat?.lastMessage?.text}</Text>
          </View>
-      </View>
+      </Pressable>
    )
 }
 
 const styles = StyleSheet.create({
-   container:{
+   container: {
       flexDirection: 'row',
       marginHorizontal: 10,
       height: 70,
@@ -29,23 +33,23 @@ const styles = StyleSheet.create({
       borderTopWidth: 0.2,
       paddingVertical: 5,
    },
-   image:{
-      width:60, 
-      height:60,
+   image: {
+      width: 60,
+      height: 60,
       borderRadius: 30,
       marginRight: 10,
    },
-   content:{
+   content: {
       flex: 1,
    },
-   messageInfo:{
+   messageInfo: {
       flexDirection: 'row',
       justifyContent: 'space-between',
    },
-   name:{
+   name: {
       fontWeight: 'bold',
    },
-   date:{
+   date: {
       fontWeight: '300',
       color: 'gray',
    },
