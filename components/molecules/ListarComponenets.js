@@ -9,7 +9,9 @@ const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
     return (
       <FlatList
         data={listaMensajes}
-        renderItem={({ item }) => <ChatListItem chat={item} />} />
+        renderItem={({ item }) => <ChatListItem chat={item} />} 
+        style={styles.listadoChats}
+        />
     )
 
   } else if (tipo === 'mensajes') {
@@ -26,6 +28,9 @@ const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
 const styles = StyleSheet.create({
   listadoMensajes: {
     padding: 10,
+  },
+  listadoChats:{
+    backgroundColor: 'white'
   }
 })
 
