@@ -3,12 +3,10 @@ import React from 'react'
 import mensajes from '../../assets/data/chats.json'
 import ListarComponentes from '../molecules/ListarComponenets'
 
-
 const ListOfChatsScreen = () => {
   return (
-    <View style={styles.container} >
-      <ListarComponentes listaMensajes={mensajes} tipo='chat' />
-      
+    <View style={styles.container}>
+      <ListarComponentes listaMensajes={mensajes} tipo="chat" />
     </View>
   )
 }
@@ -18,8 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
-
   },
-});
+})
 
 export default ListOfChatsScreen

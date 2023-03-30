@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native'
 
 const NotImplementedScreen = () => {
   return (
@@ -11,8 +11,8 @@ const NotImplementedScreen = () => {
         resizeMode="contain"
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     width: '80%',
     aspectRatio: 2 / 1,
   },
-});
+})
 
-export default NotImplementedScreen;
+export default NotImplementedScreen
