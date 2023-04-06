@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import ChatListItem from '../atoms/chatListItem'
-import mensajes from '../../assets/data/chats.json'
+import mensajes from '../../../assets/data/chats.json'
 import Message from '../atoms/Message'
 import ContactListItem from '../atoms/contactsListItem'
 

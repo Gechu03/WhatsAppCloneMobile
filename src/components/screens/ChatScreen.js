@@ -5,9 +5,9 @@ import {
   Platform,
 } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import BG from '../../assets/images/BG.png'
+import BG from '../../../assets/images/BG.png'
 import ListarComponentes from '../molecules/ListarComponenets'
-import messages from '../../assets/data/messages.json'
+import messages from '../../../assets/data/messages.json'
 import InputBox from '../atoms/InputBox'
 import { useEffect, useState } from 'react'
 

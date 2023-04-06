@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import mensajes from '../../assets/data/chats.json'
+import mensajes from '../../../assets/data/chats.json'
 import ListarComponentes from '../molecules/ListarComponenets'
 
 const ListOfChatsScreen = () => {

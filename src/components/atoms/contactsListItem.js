@@ -1,6 +1,6 @@
-import dayjs from 'dayjs'
+
 import { Text, View, Image, StyleSheet, Pressable } from 'react-native'
-import relativeTime from 'dayjs/plugin/relativeTime'
+
 import { useNavigation } from '@react-navigation/native'
 
 const ContactListItem = ({ user }) => {

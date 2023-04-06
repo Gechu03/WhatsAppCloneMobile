@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-whatsappmobile-staging-145714-authRole",
+      "UnauthRoleArn": "arn:aws:iam::020651897033:role/amplify-whatsappmobile-staging-145714-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::020651897033:role/amplify-whatsappmobile-staging-145714-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-whatsappmobile-staging-145714-deployment",
+      "UnauthRoleName": "amplify-whatsappmobile-staging-145714-unauthRole",
+      "StackName": "amplify-whatsappmobile-staging-145714",
+      "StackId": "arn:aws:cloudformation:eu-north-1:020651897033:stack/amplify-whatsappmobile-staging-145714/515ceae0-d48b-11ed-8ad3-06a8a5af1e94",
+      "AmplifyAppId": "d12pwbs8l76jji"
+    },
+    "categories": {
+      "auth": {
+        "WhatsAppMobile": {}
+      }
+    }
+  }
+}
