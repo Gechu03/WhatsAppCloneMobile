@@ -9,19 +9,20 @@ import BG from '../../assets/images/BG.png'
 import ListarComponentes from '../molecules/ListarComponenets'
 import messages from '../../assets/data/messages.json'
 import InputBox from '../atoms/InputBox'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const ChatScreen = () => {
   const route = useRoute()
   const navigation = useNavigation()
+  const [first, setFirst] = useState(false)
   useEffect(() => {
     navigation.setOptions({ title: route?.params?.name })
   }, [route.params.name])
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 85}
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 110}
       style={styles.container}
     >
       <ImageBackground source={BG} style={styles.list}>

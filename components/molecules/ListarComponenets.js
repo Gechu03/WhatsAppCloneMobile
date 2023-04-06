@@ -6,7 +6,6 @@ import Message from '../atoms/Message'
 import ContactListItem from '../atoms/contactsListItem'
 
 const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
-
   return tipo === 'chat' ? (
     <FlatList
       data={listaMensajes}

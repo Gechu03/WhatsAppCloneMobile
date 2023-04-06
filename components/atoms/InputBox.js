@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 function InputBox() {
   const onSendHandler = (props) => {
-    
     setInputValue('')
   }
 

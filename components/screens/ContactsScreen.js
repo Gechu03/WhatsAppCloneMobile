@@ -4,7 +4,6 @@ import ListarComponentes from '../molecules/ListarComponenets'
 import chats from '../../assets/data/chats.json'
 
 const ContactsScreen = () => {
-   
   return (
     <ListarComponentes
       listaMensajes={chats}
