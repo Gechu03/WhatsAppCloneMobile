@@ -1,4 +1,3 @@
-
 import { Text, View, Image, StyleSheet, Pressable } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'

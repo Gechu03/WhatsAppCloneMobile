@@ -2,10 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import NotImplementedScreen from './NotImplementedScreen'
-import ChatScreen from '../screens/ChatScreen'
-import ListOfChatsScreen from '../screens/ListOfChatsScreen'
+
+import ListOfChatsScreen from '../../screens/ListOfChatsScreen'
 import { Ionicons, Entypo } from '@expo/vector-icons'
-import SettingsScreen from '../screens/SettingsScreen'
+import SettingsScreen from '../../screens/SettingsScreen'
 
 const Tab = createBottomTabNavigator()
 
