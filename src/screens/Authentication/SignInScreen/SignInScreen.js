@@ -34,15 +34,15 @@ const SignInScreen = () => {
     setLoading(true)
     try {
       const response = await Auth.signIn(username, password)
-      
       navigation.navigate('Home')
+      setUsername('');
+      setPassword('');
       setLoading(false)
     } catch (e) {
       Alert.alert('Error:', e.message)
     }
     setLoading(false)
-    setUsername('');
-      setPassword('');
+    
   }
 
   const onSignUpPress = () => {
