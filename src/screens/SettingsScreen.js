@@ -6,8 +6,9 @@ const SettingsScreen = () => {
   const navigation = useNavigation()
 
   const SingOutHandler = () => {
-    navigation.navigate('SignIn')
     Auth.signOut()
+    navigation.navigate('SignIn')
+    
   }
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

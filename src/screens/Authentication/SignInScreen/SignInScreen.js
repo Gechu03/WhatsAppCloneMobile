@@ -34,12 +34,19 @@ const SignInScreen = () => {
     setLoading(true)
     try {
       const response = await Auth.signIn(username, password)
+      console.warn(response);
       navigation.navigate('Home')
       setUsername('');
       setPassword('');
       setLoading(false)
     } catch (e) {
-      Alert.alert('Error:', e.message)
+      if('User is not confirmed.' === e.message){
+        navigation.navigate('ConfirmEmail', {username})
+      }else{
+        Alert.alert('Error:', e.message)
+      }
+      
+      setLoading(false)
     }
     setLoading(false)
     
