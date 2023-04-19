@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import ListarComponentes from '../molecules/ListarComponenets'
+import ListarComponentes from '../components/molecules/ListarComponenets'
 import chats from '../../assets/data/chats.json'
 
 const ContactsScreen = () => {

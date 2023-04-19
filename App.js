@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import ChatList from './components/molecules/ListarComponenets';
-import mensajes from './assets/data/chats.json'
-import ListOfChatsScreen from './components/screens/ListOfChatsScreen';
-import ChatScreen from './components/screens/ChatScreen';
-import Navigator from './components/navigation';
+import { StyleSheet, View } from 'react-native';
+import Navigator from './src/components/navigation';
+import { Amplify } from 'aws-amplify';
+import awsconfig from './src/aws-exports'
 
-export default function App() {
+Amplify.configure({...awsconfig, 
+  Analytics: {
+  disabled: true,
+},});
+
+function App() {
   return (
     <View style={styles.container}>
        <Navigator />
@@ -23,3 +26,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+export default App;
