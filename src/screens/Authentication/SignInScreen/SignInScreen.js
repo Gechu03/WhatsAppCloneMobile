@@ -34,7 +34,6 @@ const SignInScreen = () => {
     setLoading(true)
     try {
       const response = await Auth.signIn(username, password)
-      console.warn(response);
       navigation.navigate('Home')
       setUsername('');
       setPassword('');

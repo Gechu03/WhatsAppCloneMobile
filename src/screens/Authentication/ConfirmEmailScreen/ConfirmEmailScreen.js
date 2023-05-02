@@ -31,7 +31,6 @@ const ConfirmEmailScreen = () => {
 
   const onResendPress = () => {
     Auth.resendSignUp(email);
-    console.warn('onResendPress');
   };
 
   return (
