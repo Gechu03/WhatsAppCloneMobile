@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   date: {
     fontWeight: '300',
     color: 'gray',
+    overflow: 'hidden',
   },
 })
 
