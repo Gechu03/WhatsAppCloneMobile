@@ -9,39 +9,49 @@ export const CustomInput = ({
   required,
   type = 'normal',
 }) => {
-  const valor = type === 'email' ? /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i  : "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
-  const typeReg = new RegExp(valor);
-  const [valid, setValid] = useState(false);
-  
+  const valor =
+    type === 'email'
+      ? /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      : '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
+  const typeReg = new RegExp(valor)
+  const [valid, setValid] = useState(false)
+
   useEffect(() => {
-    if(type === 'email' || type === 'password'){
-      if(typeReg.test(value)){
-        setValid(true); 
-      }else{
-        setValid(false);
-      }
-    }else{
-      if(value === ''){
+    if (type === 'email' || type === 'password') {
+      if (typeReg.test(value)) {
+        setValid(true)
+      } else {
         setValid(false)
-      }else{
+      }
+    } else {
+      if (value === '') {
+        setValid(false)
+      } else {
         setValid(true)
       }
     }
-    
   }, [value])
   return (
     <View style={styles.container}>
-       {required && !valid ? (
-        <Text style={styles.required}>{type === 'email' ? 'Email dont fill requisites' : type === 'password' ? 'Password dont fill the requisites' : 'Required'}</Text>
+      {required && !valid ? (
+        <Text style={styles.required}>
+          {type === 'email'
+            ? 'Email dont fill requisites'
+            : type === 'password'
+            ? 'Password dont fill the requisites'
+            : 'Required'}
+        </Text>
       ) : (
         <></>
       )}
-      <View style={[styles.root,   required  && !valid  ? styles.input_required : ``]}>
+      <View
+        style={[styles.root, required && !valid ? styles.input_required : ``]}
+      >
         <TextInput
           value={value}
           onChangeText={setValue}
           placeholder={placeholder}
-          styles={{color: 'white'}}
+          styles={{ color: 'white' }}
           secureTextEntry={secureTextEntry}
         />
       </View>
@@ -70,10 +80,10 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     marginBottom: 2,
   },
-  input_required:{
+  input_required: {
     borderWidth: 1,
     borderColor: 'red',
-  }
+  },
 })
 
 export default CustomInput

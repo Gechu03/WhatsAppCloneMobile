@@ -17,32 +17,30 @@ const SignUpScreen = () => {
       return
     }
 
-    if(password !== passwordRepeat){
+    if (password !== passwordRepeat) {
       Alert.alert('Error:', 'The two passwords provided are not the same')
       return
     }
 
-    let emailTest = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if(emailTest.test(username) === false){
+    let emailTest = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/
+    if (emailTest.test(username) === false) {
       Alert.alert('Error:', 'Email dont match the requirements')
       return
     }
 
     setLoading(true)
     try {
-      const response = await Auth.signUp({username, password})
-      navigation.navigate('ConfirmEmail', {username})
+      const response = await Auth.signUp({ username, password })
+      navigation.navigate('ConfirmEmail', { username })
       setLoading(false)
     } catch (e) {
       Alert.alert('Error:', e.message)
     }
     setLoading(false)
-
-    
   }
 
   const onSignInPress = () => {
-    navigation.navigate('SignIn', {email: username})
+    navigation.navigate('SignIn', { email: username })
   }
 
   return (
@@ -50,32 +48,39 @@ const SignUpScreen = () => {
       <View style={styles.root}>
         <Text style={styles.title}>Create an account</Text>
 
-        <CustomInput required={true} type='email' placeholder="Email" value={username} setValue={setusername} />
+        <CustomInput
+          required={true}
+          type="email"
+          placeholder="Email"
+          value={username}
+          setValue={setusername}
+        />
         <CustomInput
           required={true}
           placeholder="Password"
           value={password}
           setValue={setPassword}
           secureTextEntry
-          type='password'
+          type="password"
         />
         <CustomInput
-        required={true}
+          required={true}
           placeholder="Repeat Password"
           value={passwordRepeat}
           setValue={setPasswordRepeat}
           secureTextEntry
-          type='password'
+          type="password"
         />
 
         <CustomButton
           style={styles.button}
-          text={loading ? 'Loading...':"Register"}
+          text={loading ? 'Loading...' : 'Register'}
           onPress={onRegisterPressed}
         />
 
         <Text style={styles.text}>
-          By registering, you confirm that you accept our Terms of Uses and Privacy Policy
+          By registering, you confirm that you accept our Terms of Uses and
+          Privacy Policy
         </Text>
 
         <CustomButton

@@ -54,7 +54,7 @@ export const onCreateChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const onUpdateChatRoom = /* GraphQL */ `
   subscription OnUpdateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
     onUpdateChatRoom(filter: $filter) {
@@ -108,7 +108,7 @@ export const onUpdateChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const onDeleteChatRoom = /* GraphQL */ `
   subscription OnDeleteChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
     onDeleteChatRoom(filter: $filter) {
@@ -162,7 +162,7 @@ export const onDeleteChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const onCreateMessage = /* GraphQL */ `
   subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
     onCreateMessage(filter: $filter) {
@@ -177,7 +177,7 @@ export const onCreateMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onUpdateMessage = /* GraphQL */ `
   subscription OnUpdateMessage($filter: ModelSubscriptionMessageFilterInput) {
     onUpdateMessage(filter: $filter) {
@@ -192,7 +192,7 @@ export const onUpdateMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onDeleteMessage = /* GraphQL */ `
   subscription OnDeleteMessage($filter: ModelSubscriptionMessageFilterInput) {
     onDeleteMessage(filter: $filter) {
@@ -207,7 +207,7 @@ export const onDeleteMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
     onCreateUser(filter: $filter) {
@@ -251,7 +251,7 @@ export const onCreateUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
     onUpdateUser(filter: $filter) {
@@ -295,7 +295,7 @@ export const onUpdateUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
     onDeleteUser(filter: $filter) {
@@ -339,7 +339,7 @@ export const onDeleteUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onCreateChatRoomUser = /* GraphQL */ `
   subscription OnCreateChatRoomUser(
     $filter: ModelSubscriptionChatRoomUserFilterInput
@@ -403,7 +403,7 @@ export const onCreateChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onUpdateChatRoomUser = /* GraphQL */ `
   subscription OnUpdateChatRoomUser(
     $filter: ModelSubscriptionChatRoomUserFilterInput
@@ -467,7 +467,7 @@ export const onUpdateChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const onDeleteChatRoomUser = /* GraphQL */ `
   subscription OnDeleteChatRoomUser(
     $filter: ModelSubscriptionChatRoomUserFilterInput
@@ -531,4 +531,4 @@ export const onDeleteChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`

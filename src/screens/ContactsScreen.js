@@ -2,17 +2,17 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import ListarComponentes from '../components/molecules/ListarComponenets'
 import chats from '../../assets/data/chats.json'
-import {API, graphqlOperation} from 'aws-amplify'
+import { API, graphqlOperation } from 'aws-amplify'
 import { listUsers } from '../graphql/queries'
 import { Alert } from 'react-native'
 
 const ContactsScreen = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([])
   useEffect(() => {
-    API.graphql(graphqlOperation(listUsers)).then((result) =>{
-      setUsers(result?.data?.listUsers?.items);
-    });
-  },[])
+    API.graphql(graphqlOperation(listUsers)).then((result) => {
+      setUsers(result?.data?.listUsers?.items)
+    })
+  }, [])
 
   return (
     <ListarComponentes

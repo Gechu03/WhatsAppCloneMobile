@@ -57,7 +57,7 @@ export const createChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const updateChatRoom = /* GraphQL */ `
   mutation UpdateChatRoom(
     $input: UpdateChatRoomInput!
@@ -114,7 +114,7 @@ export const updateChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const deleteChatRoom = /* GraphQL */ `
   mutation DeleteChatRoom(
     $input: DeleteChatRoomInput!
@@ -171,7 +171,7 @@ export const deleteChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const createMessage = /* GraphQL */ `
   mutation CreateMessage(
     $input: CreateMessageInput!
@@ -189,7 +189,7 @@ export const createMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const updateMessage = /* GraphQL */ `
   mutation UpdateMessage(
     $input: UpdateMessageInput!
@@ -207,7 +207,7 @@ export const updateMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const deleteMessage = /* GraphQL */ `
   mutation DeleteMessage(
     $input: DeleteMessageInput!
@@ -225,7 +225,7 @@ export const deleteMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -272,7 +272,7 @@ export const createUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser(
     $input: UpdateUserInput!
@@ -319,7 +319,7 @@ export const updateUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const deleteUser = /* GraphQL */ `
   mutation DeleteUser(
     $input: DeleteUserInput!
@@ -366,7 +366,7 @@ export const deleteUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const createChatRoomUser = /* GraphQL */ `
   mutation CreateChatRoomUser(
     $input: CreateChatRoomUserInput!
@@ -431,7 +431,7 @@ export const createChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const updateChatRoomUser = /* GraphQL */ `
   mutation UpdateChatRoomUser(
     $input: UpdateChatRoomUserInput!
@@ -496,7 +496,7 @@ export const updateChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const deleteChatRoomUser = /* GraphQL */ `
   mutation DeleteChatRoomUser(
     $input: DeleteChatRoomUserInput!
@@ -561,4 +561,4 @@ export const deleteChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`

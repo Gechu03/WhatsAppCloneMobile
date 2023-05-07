@@ -25,8 +25,8 @@ const SignInScreen = () => {
     if (loading) {
       return
     }
-    let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if(email.test(username) === false){
+    let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/
+    if (email.test(username) === false) {
       Alert.alert('Error:', 'Email dont match the requirements')
       return
     }
@@ -35,20 +35,19 @@ const SignInScreen = () => {
     try {
       const response = await Auth.signIn(username, password)
       navigation.navigate('Home')
-      setUsername('');
-      setPassword('');
+      setUsername('')
+      setPassword('')
       setLoading(false)
     } catch (e) {
-      if('User is not confirmed.' === e.message){
-        navigation.navigate('ConfirmEmail', {username})
-      }else{
+      if ('User is not confirmed.' === e.message) {
+        navigation.navigate('ConfirmEmail', { username })
+      } else {
         Alert.alert('Error:', e.message)
       }
-      
+
       setLoading(false)
     }
     setLoading(false)
-    
   }
 
   const onSignUpPress = () => {
@@ -69,7 +68,7 @@ const SignInScreen = () => {
           placeholder="Email"
           value={username}
           setValue={setUsername}
-          type='email'
+          type="email"
         />
 
         <CustomInput
@@ -78,7 +77,7 @@ const SignInScreen = () => {
           value={password}
           setValue={setPassword}
           secureTextEntry
-          type='password'
+          type="password"
         />
 
         <CustomButton

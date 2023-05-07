@@ -54,7 +54,7 @@ export const getChatRoom = /* GraphQL */ `
       chatRoomLastMessageId
     }
   }
-`;
+`
 export const listChatRooms = /* GraphQL */ `
   query ListChatRooms(
     $filter: ModelChatRoomFilterInput
@@ -95,7 +95,7 @@ export const listChatRooms = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const syncChatRooms = /* GraphQL */ `
   query SyncChatRooms(
     $filter: ModelChatRoomFilterInput
@@ -142,7 +142,7 @@ export const syncChatRooms = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {
@@ -157,7 +157,7 @@ export const getMessage = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const listMessages = /* GraphQL */ `
   query ListMessages(
     $filter: ModelMessageFilterInput
@@ -180,7 +180,7 @@ export const listMessages = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const syncMessages = /* GraphQL */ `
   query SyncMessages(
     $filter: ModelMessageFilterInput
@@ -209,7 +209,7 @@ export const syncMessages = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const messagesByChatroomID = /* GraphQL */ `
   query MessagesByChatroomID(
     $chatroomID: ID!
@@ -240,7 +240,7 @@ export const messagesByChatroomID = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const messagesByUserID = /* GraphQL */ `
   query MessagesByUserID(
     $userID: ID!
@@ -271,7 +271,7 @@ export const messagesByUserID = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -315,7 +315,7 @@ export const getUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const listUsers = /* GraphQL */ `
   query ListUsers(
     $filter: ModelUserFilterInput
@@ -346,7 +346,7 @@ export const listUsers = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const syncUsers = /* GraphQL */ `
   query SyncUsers(
     $filter: ModelUserFilterInput
@@ -383,7 +383,7 @@ export const syncUsers = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const getChatRoomUser = /* GraphQL */ `
   query GetChatRoomUser($id: ID!) {
     getChatRoomUser(id: $id) {
@@ -445,7 +445,7 @@ export const getChatRoomUser = /* GraphQL */ `
       _lastChangedAt
     }
   }
-`;
+`
 export const listChatRoomUsers = /* GraphQL */ `
   query ListChatRoomUsers(
     $filter: ModelChatRoomUserFilterInput
@@ -488,7 +488,7 @@ export const listChatRoomUsers = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const syncChatRoomUsers = /* GraphQL */ `
   query SyncChatRoomUsers(
     $filter: ModelChatRoomUserFilterInput
@@ -537,7 +537,7 @@ export const syncChatRoomUsers = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const chatRoomUsersByChatRoomId = /* GraphQL */ `
   query ChatRoomUsersByChatRoomId(
     $chatRoomId: ID!
@@ -588,7 +588,7 @@ export const chatRoomUsersByChatRoomId = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`
 export const chatRoomUsersByUserId = /* GraphQL */ `
   query ChatRoomUsersByUserId(
     $userId: ID!
@@ -639,4 +639,4 @@ export const chatRoomUsersByUserId = /* GraphQL */ `
       startedAt
     }
   }
-`;
+`

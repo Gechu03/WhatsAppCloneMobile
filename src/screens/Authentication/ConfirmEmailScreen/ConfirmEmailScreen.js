@@ -1,37 +1,37 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import CustomInput from '../../../components/atoms/CustomInput'
 import CustomButton from '../../../components/atoms/CustomButton'
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core'
 import { Auth } from 'aws-amplify'
-import {useRoute} from '@react-navigation/native'
-import { Alert } from 'react-native';
+import { useRoute } from '@react-navigation/native'
+import { Alert } from 'react-native'
 
 const ConfirmEmailScreen = () => {
-  const route = useRoute();
-  const [code, setCode] = useState('');
-  const email = route?.params?.username;
+  const route = useRoute()
+  const [code, setCode] = useState('')
+  const email = route?.params?.username
   const [loading, setLoading] = useState(false)
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const onConfirmPressed = async () => {
     setLoading(true)
-    try{
-      const response = await Auth.confirmSignUp(email, code);
-      navigation.navigate('Home');
-    }catch(e){
-      Alert.alert('Error:', e.message);
+    try {
+      const response = await Auth.confirmSignUp(email, code)
+      navigation.navigate('Home')
+    } catch (e) {
+      Alert.alert('Error:', e.message)
     }
     setLoading(false)
-  };
+  }
 
   const onSignInPress = () => {
-    navigation.navigate('SignIn');
-  };
+    navigation.navigate('SignIn')
+  }
 
   const onResendPress = () => {
-    Auth.resendSignUp(email);
-  };
+    Auth.resendSignUp(email)
+  }
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -59,13 +59,13 @@ const ConfirmEmailScreen = () => {
         />
       </View>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     marginTop: 180,
-  },  
+  },
   root: {
     alignItems: 'center',
     padding: 20,
@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   link: {
     color: '#FDB075',
   },
-});
+})
 
-export default ConfirmEmailScreen;
+export default ConfirmEmailScreen
