@@ -8,7 +8,7 @@ export const createChatRoom = /* GraphQL */ `
   ) {
     createChatRoom(input: $input, condition: $condition) {
       id
-      chatName
+
       ChatMessages {
         items {
           id
@@ -65,7 +65,7 @@ export const updateChatRoom = /* GraphQL */ `
   ) {
     updateChatRoom(input: $input, condition: $condition) {
       id
-      chatName
+
       ChatMessages {
         items {
           id
@@ -122,7 +122,7 @@ export const deleteChatRoom = /* GraphQL */ `
   ) {
     deleteChatRoom(input: $input, condition: $condition) {
       id
-      chatName
+
       ChatMessages {
         items {
           id
@@ -378,7 +378,7 @@ export const createChatRoomUser = /* GraphQL */ `
       userId
       chatRoom {
         id
-        chatName
+
         ChatMessages {
           nextToken
           startedAt
@@ -443,7 +443,7 @@ export const updateChatRoomUser = /* GraphQL */ `
       userId
       chatRoom {
         id
-        chatName
+
         ChatMessages {
           nextToken
           startedAt
@@ -508,7 +508,7 @@ export const deleteChatRoomUser = /* GraphQL */ `
       userId
       chatRoom {
         id
-        chatName
+
         ChatMessages {
           nextToken
           startedAt

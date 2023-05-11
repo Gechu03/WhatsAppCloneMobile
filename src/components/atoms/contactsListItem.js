@@ -1,12 +1,52 @@
 import { Text, View, Image, StyleSheet, Pressable } from 'react-native'
-
+import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
+import { createChatRoom, createChatRoomUser } from '../../graphql/mutations'
+import { listChatRooms } from '../../CustomQueries/queries'
+import { getChatCommonRoom } from '../../CustomQueries/functions'
 
 const ContactListItem = ({ user }) => {
   const navigation = useNavigation()
+  const clickHandler = async () => {
+    const existingChatRoom = await getChatCommonRoom(user.id)
+
+    if (existingChatRoom) {
+      navigation.navigate('Chat', { id: existingChatRoom.id, name: user?.name })
+      return
+    }
+
+    const newChatRoomData = await API.graphql(
+      graphqlOperation(createChatRoom, { input: {} })
+    )
+
+    if (!newChatRoomData?.data?.createChatRoom) {
+      console.log('Error creating the chat room')
+    }
+
+    const newChatRoom = newChatRoomData?.data?.createChatRoom
+
+    await API.graphql(
+      graphqlOperation(createChatRoomUser, {
+        input: { chatRoomId: newChatRoom.id, userId: user.id },
+      })
+    )
+
+    const AuthUser = await Auth.currentAuthenticatedUser()
+    await API.graphql(
+      graphqlOperation(createChatRoomUser, {
+        input: { chatRoomId: newChatRoom.id, userId: AuthUser.attributes.sub },
+      })
+    )
+
+    navigation.navigate('Chat', { id: newChatRoom.id, name: user?.name })
+  }
 
   return (
-    <Pressable onPress={() => {}} id={user?.id} style={styles.container}>
+    <Pressable
+      onPress={() => clickHandler()}
+      id={user?.id}
+      style={styles.container}
+    >
       <Image
         style={styles.image}
         source={{

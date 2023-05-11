@@ -12,7 +12,6 @@ type EagerChatRoom = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly chatName?: string | null;
   readonly ChatMessages?: (Message | null)[] | null;
   readonly UsersChatRooms?: (ChatRoomUser | null)[] | null;
   readonly LastMessage?: Message | null;
@@ -27,7 +26,6 @@ type LazyChatRoom = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly chatName?: string | null;
   readonly ChatMessages: AsyncCollection<Message>;
   readonly UsersChatRooms: AsyncCollection<ChatRoomUser>;
   readonly LastMessage: AsyncItem<Message | undefined>;

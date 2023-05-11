@@ -2,18 +2,32 @@ import dayjs from 'dayjs'
 import { Text, View, Image, StyleSheet, Pressable } from 'react-native'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useNavigation } from '@react-navigation/native'
+import { Auth } from 'aws-amplify'
+import { useEffect, useState } from 'react'
 
 const ChatListItem = ({ chat }) => {
   dayjs.extend(relativeTime)
-
+  const [user, setUser] = useState()
   const navigation = useNavigation()
+  useEffect(() => {
+    const getAuthUser = async () => {
+      const userAutenticated = await Auth.currentAuthenticatedUser()
+
+      const usertoSet = chat.chatRoom.UsersChatRooms.items.find(
+        (item) => item.user.id !== userAutenticated.attributes.sub
+      )
+
+      setUser(usertoSet?.user)
+    }
+    getAuthUser()
+  }, [])
 
   return (
     <Pressable
       onPress={() =>
         navigation.navigate('Chat', {
-          id: chat.id,
-          name: chat?.user?.name ?? 'error',
+          id: chat?.id,
+          name: user?.name ?? ' ',
         })
       }
       id={chat?.id}
@@ -23,14 +37,14 @@ const ChatListItem = ({ chat }) => {
         style={styles.image}
         source={{
           uri:
-            chat?.user?.image ??
+            user?.image ??
             'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg',
         }}
       />
       <View style={styles.content}>
         <View style={styles.messageInfo}>
           <Text numberOfLines={1} style={styles.name}>
-            {chat?.user?.name}
+            {user?.name}
           </Text>
           <Text style={styles.date}>
             {dayjs(chat?.lastMessage?.createdAt).fromNow(true)}

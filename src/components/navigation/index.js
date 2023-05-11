@@ -49,7 +49,6 @@ const Navigator = () => {
       status: 'Hey, I am ussing WhatsAppTFG',
     }
 
-    console.log('New user', newUser)
     const newUserResponse = API.graphql(
       graphqlOperation(createUser, { input: newUser })
     )

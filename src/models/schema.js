@@ -10,13 +10,6 @@ export const schema = {
           isRequired: true,
           attributes: [],
         },
-        chatName: {
-          name: 'chatName',
-          isArray: false,
-          type: 'String',
-          isRequired: false,
-          attributes: [],
-        },
         ChatMessages: {
           name: 'ChatMessages',
           isArray: true,
@@ -375,5 +368,5 @@ export const schema = {
   enums: {},
   nonModels: {},
   codegenVersion: '3.4.2',
-  version: 'e7836d37b2b28f3187aba85c158c2d28',
+  version: 'c8103672cf818288e4f91c6ce97076f6',
 }
