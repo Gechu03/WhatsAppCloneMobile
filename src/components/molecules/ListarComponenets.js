@@ -6,6 +6,8 @@ import Message from '../atoms/Message'
 import ContactListItem from '../atoms/contactsListItem'
 
 const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
+ 
+
   return tipo === 'chat' ? (
     <FlatList
       data={listaMensajes}
@@ -17,7 +19,9 @@ const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
       inverted
       data={listaMensajes}
       style={styles.listadoMensajes}
-      renderItem={({ item }) => <Message mensaje={item} />}
+      renderItem={({ item }) => (
+        <Message mensaje={item} keyExtractor={(item) => item.createdAt} />
+      )}
     />
   ) : tipo === 'contacts' ? (
     <FlatList

@@ -2,13 +2,37 @@ import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { AntDesign, MaterialIcons } from '@expo/vector-icons'
 import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { API, graphqlOperation, Auth } from 'aws-amplify'
+import { createMessage, updateChatRoom } from '../../graphql/mutations'
 
-function InputBox() {
-  const onSendHandler = (props) => {
-    setInputValue('')
-  }
-
+const InputBox = ({ chatroom }) => {
   const [inputValue, setInputValue] = useState('')
+
+  const onSendHandler = async () => {
+    const authUser = await Auth.currentAuthenticatedUser()
+    const newMessage = {
+      chatroomID: chatroom.id,
+      text: inputValue,
+      userID: authUser.attributes.sub,
+    }
+
+    const newMessageData = await API.graphql(
+      graphqlOperation(createMessage, { input: newMessage })
+    )
+
+    setInputValue('')
+
+    // set lastMessage
+    await API.graphql(
+      graphqlOperation(updateChatRoom, {
+        input: {
+          _version: chatroom._vesion,
+          chatRoomLastMessageId: newMessageData.data.createMessage.id,
+          id: chatroom.id,
+        },
+      })
+    )
+  }
 
   return (
     <SafeAreaView edges={['bottom']} style={styles.container}>

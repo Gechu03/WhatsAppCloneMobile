@@ -26,7 +26,7 @@ const ChatListItem = ({ chat }) => {
     <Pressable
       onPress={() =>
         navigation.navigate('Chat', {
-          id: chat?.id,
+          id: chat?.chatRoom?.id,
           name: user?.name ?? ' ',
         })
       }
@@ -47,11 +47,13 @@ const ChatListItem = ({ chat }) => {
             {user?.name}
           </Text>
           <Text style={styles.date}>
-            {dayjs(chat?.lastMessage?.createdAt).fromNow(true)}
+            {chat?.chatRoom?.LastMessage?.createdAt
+              ? dayjs(chat?.chatRoom?.LastMessage?.createdAt).fromNow(true)
+              : ''}
           </Text>
         </View>
-        <Text numberOfLines={2} style={styles.date}>
-          {chat?.lastMessage?.text}
+        <Text numberOfLines={2} style={styles.lastMessage}>
+          {chat?.chatRoom?.LastMessage?.text}
         </Text>
       </View>
     </Pressable>
@@ -86,6 +88,11 @@ const styles = StyleSheet.create({
   date: {
     fontWeight: '300',
     color: 'gray',
+  },
+  lastMessage: {
+    fontWeight: '300',
+    color: 'gray',
+    marginTop: 10,
   },
 })
 

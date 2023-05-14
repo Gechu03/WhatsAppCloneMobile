@@ -52,6 +52,20 @@ export const schema = {
             targetNames: ['chatRoomLastMessageId'],
           },
         },
+        name: {
+          name: 'name',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        image: {
+          name: 'image',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
         createdAt: {
           name: 'createdAt',
           isArray: false,
@@ -106,6 +120,13 @@ export const schema = {
           isRequired: true,
           attributes: [],
         },
+        createdAt: {
+          name: 'createdAt',
+          isArray: false,
+          type: 'AWSDateTime',
+          isRequired: true,
+          attributes: [],
+        },
         text: {
           name: 'text',
           isArray: false,
@@ -127,14 +148,6 @@ export const schema = {
           isRequired: true,
           attributes: [],
         },
-        createdAt: {
-          name: 'createdAt',
-          isArray: false,
-          type: 'AWSDateTime',
-          isRequired: false,
-          attributes: [],
-          isReadOnly: true,
-        },
         updatedAt: {
           name: 'updatedAt',
           isArray: false,
@@ -155,7 +168,8 @@ export const schema = {
           type: 'key',
           properties: {
             name: 'byChatRoom',
-            fields: ['chatroomID'],
+            queryField: 'listMessagesByChatRoom',
+            fields: ['chatroomID', 'createdAt'],
           },
         },
         {
@@ -367,6 +381,6 @@ export const schema = {
   },
   enums: {},
   nonModels: {},
-  codegenVersion: '3.4.2',
-  version: 'c8103672cf818288e4f91c6ce97076f6',
+  codegenVersion: '3.4.3',
+  version: '06cf385871e86a9aa15539aa4b802c30',
 }

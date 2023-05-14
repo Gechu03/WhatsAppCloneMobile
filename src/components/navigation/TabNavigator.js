@@ -3,7 +3,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import NotImplementedScreen from './NotImplementedScreen'
 
-import ListOfChatsScreen from '../../screens/ListOfChatsScreen/ListOfChatsScreen'
+import ListOfChatsScreen from '../../screens/ListOfChatsScreen'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 import SettingsScreen from '../../screens/SettingsScreen'
 
