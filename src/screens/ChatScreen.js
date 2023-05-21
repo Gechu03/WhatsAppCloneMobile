@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
 import { getChatRoom, listMessagesByChatRoom } from '../graphql/queries'
 import { ActivityIndicator } from 'react-native'
+import { onCreateMessage, onUpdateChatRoom } from '../graphql/subscriptions'
 
 const ChatScreen = () => {
   const route = useRoute()
@@ -20,7 +21,6 @@ const ChatScreen = () => {
   const [messages, setMessages] = useState([])
 
   const chatRoomId = route.params
-
   // recibe chatRoom
   useEffect(() => {
     API.graphql(
@@ -29,9 +29,22 @@ const ChatScreen = () => {
         chatName: chatRoomId.name,
       })
     ).then((result) => {
-      setChatRoom(result?.data?.getChatRoom);
+      setChatRoom(result?.data?.getChatRoom)
     })
-  }, [])
+
+    const subs = API.graphql(
+      graphqlOperation(onUpdateChatRoom, {
+        filter: { id: { eq: chatRoomId.id } },
+      })
+    ).subscribe({
+      next: ({value}) => {
+        setChatRoom(cr => ({...(cr, {}), ...value.data.onUpdateChatRoom}))
+      },
+      error: (err) => console.warn(err)
+    } );
+
+    return () => subs.unsubscribe()
+  }, [chatRoomId.id])
 
   // recibe Mensages
   useEffect(() => {
@@ -41,9 +54,23 @@ const ChatScreen = () => {
         sortDirection: 'DESC',
       })
     ).then((result) => {
-      setMessages(result?.data?.listMessagesByChatRoom?.items);
+      setMessages(result?.data?.listMessagesByChatRoom?.items)
     })
-  },[])
+
+    // trigger when new message created
+    const subs = API.graphql(
+      graphqlOperation(onCreateMessage, {
+        filter: { chatroomID: { eq: chatRoomId.id } },
+      })
+    ).subscribe({
+      next: ({ value }) => {
+        setMessages((messages) => [value.data.onCreateMessage, ...messages])
+      },
+      error: (e) => console.warn(e),
+    })
+
+    return () => subs.unsubscribe()
+  }, [chatRoomId.id])
 
   useEffect(() => {
     navigation.setOptions({ title: route?.params?.name })

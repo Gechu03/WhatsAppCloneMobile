@@ -3,29 +3,36 @@ import React, { useEffect, useState } from 'react'
 import ListarComponentes from '../components/molecules/ListarComponenets'
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { listChatRooms } from '../CustomQueries/queries'
+
 const ListOfChatsScreen = () => {
   const [chatRooms, setChatRooms] = useState([])
-  useEffect(() => {
-    const fetchChatRooms = async () => {
-      const userAutenticated = await Auth.currentAuthenticatedUser()
-      const response = await API.graphql(
-        graphqlOperation(listChatRooms, { id: userAutenticated.attributes.sub })
-      )
-      
-      const rooms = response?.data?.getUser?.ChatRoomsUsers?.items || []
-      const roomsOrdered = rooms.sort((a,b) => new Date(a?.chatRoom?.LastMessage?.createdAt) <   new Date(b?.chatRoom?.LastMessage?.createdAt) ? 1 : -1);
-     
-      setChatRooms(roomsOrdered)
-    }
 
+  const fetchChatRooms = async () => {
+    const userAutenticated = await Auth.currentAuthenticatedUser()
     
+    const response = await API.graphql(
+      graphqlOperation(listChatRooms, { id: userAutenticated.attributes.sub })
+    )
 
+    const rooms = response?.data?.getUser?.ChatRoomsUsers?.items || []
+
+    const sortedRooms = rooms.sort(
+      (r1, r2) =>
+        new Date(r2.chatRoom?.updatedAt) - new Date(r1.chatRoom?.updatedAt)
+    )
+    setChatRooms(sortedRooms)
+  }
+
+  useEffect(() => {
     fetchChatRooms()
   }, [])
 
   return (
     <View style={styles.container}>
-      <ListarComponentes listaMensajes={chatRooms} tipo="chat" />
+      <ListarComponentes
+        listaMensajes={chatRooms}
+        tipo="chat"
+      />
     </View>
   )
 }

@@ -5,14 +5,13 @@ import mensajes from '../../../assets/data/chats.json'
 import Message from '../atoms/Message'
 import ContactListItem from '../atoms/contactsListItem'
 
-const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
- 
-
+const ListarComponentes = ({ listaMensajes, tipo = 'chat', ...props }) => {
   return tipo === 'chat' ? (
     <FlatList
       data={listaMensajes}
-      renderItem={({ item }) => <ChatListItem chat={item} />}
+      renderItem={({ item }) => <ChatListItem chat={item.chatRoom} />}
       style={styles.listadoChats}
+      {...props}
     />
   ) : tipo === 'mensajes' ? (
     <FlatList
@@ -22,12 +21,14 @@ const ListarComponentes = ({ listaMensajes, tipo = 'chat' }) => {
       renderItem={({ item }) => (
         <Message mensaje={item} keyExtractor={(item) => item.createdAt} />
       )}
+      {...props}
     />
   ) : tipo === 'contacts' ? (
     <FlatList
       data={listaMensajes}
       renderItem={({ item }) => <ContactListItem user={item} />}
       style={styles.listadoChats}
+      {...props}
     />
   ) : (
     <></>

@@ -9,6 +9,9 @@ const InputBox = ({ chatroom }) => {
   const [inputValue, setInputValue] = useState('')
 
   const onSendHandler = async () => {
+    if(inputValue === ''){
+      return
+    }
     const authUser = await Auth.currentAuthenticatedUser()
     const newMessage = {
       chatroomID: chatroom.id,
@@ -21,12 +24,12 @@ const InputBox = ({ chatroom }) => {
     )
 
     setInputValue('')
-
     // set lastMessage
-    await API.graphql(
+
+    const resposne = await API.graphql(
       graphqlOperation(updateChatRoom, {
         input: {
-          _version: chatroom._vesion,
+          _version: chatroom._version,
           chatRoomLastMessageId: newMessageData.data.createMessage.id,
           id: chatroom.id,
         },
