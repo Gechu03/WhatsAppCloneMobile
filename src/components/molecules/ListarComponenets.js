@@ -23,13 +23,6 @@ const ListarComponentes = ({ listaMensajes, tipo = 'chat', ...props }) => {
       )}
       {...props}
     />
-  ) : tipo === 'contacts' ? (
-    <FlatList
-      data={listaMensajes}
-      renderItem={({ item }) => <ContactListItem user={item} />}
-      style={styles.listadoChats}
-      {...props}
-    />
   ) : (
     <></>
   )

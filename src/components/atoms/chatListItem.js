@@ -4,21 +4,19 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { useNavigation } from '@react-navigation/native'
 import { Auth } from 'aws-amplify'
 import { useEffect, useState } from 'react'
-import { onUpdateChatRoom } from '../../graphql/subscriptions'
+import { onCreateChatRoom, onUpdateChatRoom } from '../../graphql/subscriptions'
 import { API, graphqlOperation } from 'aws-amplify'
 dayjs.extend(relativeTime)
 
 const ChatListItem = ({ chat }) => {
- 
   const [user, setUser] = useState()
   const navigation = useNavigation()
-  const [chatRoom, setChatRoom] = useState(chat);
+  const [chatRoom, setChatRoom] = useState(chat)
 
   useEffect(() => {
     const getAuthUser = async () => {
       const userAutenticated = await Auth.currentAuthenticatedUser()
 
-      console.log( chatRoom.UsersChatRooms.items[0].user.id, chat.id, chatRoom?.id)
       const usertoSet = chatRoom.UsersChatRooms.items.find(
         (item) => item?.user?.id !== userAutenticated.attributes.sub
       )
@@ -37,13 +35,14 @@ const ChatListItem = ({ chat }) => {
         setChatRoom((cr) => ({
           ...(cr || {}),
           ...value.data.onUpdateChatRoom,
-        }));
+        }))
       },
       error: (err) => console.warn(err),
-    });
+    })
 
-    return () => subscription.unsubscribe();
-  }, [chat.id]);
+    return () => subscription.unsubscribe()
+  }, [chat.id])
+
 
   return (
     <Pressable

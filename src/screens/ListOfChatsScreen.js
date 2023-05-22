@@ -9,7 +9,7 @@ const ListOfChatsScreen = () => {
 
   const fetchChatRooms = async () => {
     const userAutenticated = await Auth.currentAuthenticatedUser()
-    
+
     const response = await API.graphql(
       graphqlOperation(listChatRooms, { id: userAutenticated.attributes.sub })
     )
@@ -21,6 +21,7 @@ const ListOfChatsScreen = () => {
         new Date(r2.chatRoom?.updatedAt) - new Date(r1.chatRoom?.updatedAt)
     )
     setChatRooms(sortedRooms)
+
   }
 
   useEffect(() => {
@@ -29,10 +30,7 @@ const ListOfChatsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ListarComponentes
-        listaMensajes={chatRooms}
-        tipo="chat"
-      />
+      <ListarComponentes listaMensajes={chatRooms} tipo="chat" />
     </View>
   )
 }

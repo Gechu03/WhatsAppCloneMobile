@@ -37,11 +37,11 @@ const ChatScreen = () => {
         filter: { id: { eq: chatRoomId.id } },
       })
     ).subscribe({
-      next: ({value}) => {
-        setChatRoom(cr => ({...(cr, {}), ...value.data.onUpdateChatRoom}))
+      next: ({ value }) => {
+        setChatRoom((cr) => ({ ...(cr, {}), ...value.data.onUpdateChatRoom }))
       },
-      error: (err) => console.warn(err)
-    } );
+      error: (err) => console.warn(err),
+    })
 
     return () => subs.unsubscribe()
   }, [chatRoomId.id])
@@ -79,7 +79,7 @@ const ChatScreen = () => {
   if (!chatRoom) {
     return <ActivityIndicator />
   }
-
+  console.log(JSON.stringify(chatRoom?.name))
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : null}

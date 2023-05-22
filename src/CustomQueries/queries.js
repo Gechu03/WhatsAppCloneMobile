@@ -4,6 +4,7 @@ query GetUser($id: ID!) {
      id
      ChatRoomsUsers {
        items {
+        name
          chatRoom {
            id
            updatedAt

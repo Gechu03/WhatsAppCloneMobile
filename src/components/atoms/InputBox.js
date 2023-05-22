@@ -9,7 +9,7 @@ const InputBox = ({ chatroom }) => {
   const [inputValue, setInputValue] = useState('')
 
   const onSendHandler = async () => {
-    if(inputValue === ''){
+    if (inputValue === '') {
       return
     }
     const authUser = await Auth.currentAuthenticatedUser()

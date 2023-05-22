@@ -13,6 +13,7 @@ import { View } from 'react-native'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createUser } from '../../graphql/mutations'
 import { getUser } from '../../graphql/queries'
+import NewGroupScreen from '../../screens/NewGroupScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -81,6 +82,7 @@ const Navigator = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen name="Chat" component={ChatSceen} />
+            <Stack.Screen name="New Group" component={NewGroupScreen} />
             <Stack.Screen name="Contacts" component={ContactsScreen} />
             <Stack.Screen
               name="SignIn"
