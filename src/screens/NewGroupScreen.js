@@ -74,6 +74,7 @@ function NewGroupScreen() {
       })
     )
    setSelectedUsersID([]);
+   setName("");
     navigation.navigate('Chat', { id: newChatRoom.id, name: chatName })
   }
 

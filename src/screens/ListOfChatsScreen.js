@@ -6,14 +6,11 @@ import { listChatRooms } from '../CustomQueries/queries'
 
 const ListOfChatsScreen = () => {
   const [chatRooms, setChatRooms] = useState([])
-
   const fetchChatRooms = async () => {
     const userAutenticated = await Auth.currentAuthenticatedUser()
-
     const response = await API.graphql(
       graphqlOperation(listChatRooms, { id: userAutenticated.attributes.sub })
     )
-
     const rooms = response?.data?.getUser?.ChatRoomsUsers?.items || []
 
     const sortedRooms = rooms.sort(

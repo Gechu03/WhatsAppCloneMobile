@@ -79,7 +79,6 @@ const ChatScreen = () => {
   if (!chatRoom) {
     return <ActivityIndicator />
   }
-  console.log(JSON.stringify(chatRoom?.name))
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : null}
