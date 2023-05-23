@@ -6,13 +6,14 @@ import { Auth } from 'aws-amplify'
 import { useEffect, useState } from 'react'
 import { onCreateChatRoom, onUpdateChatRoom } from '../../graphql/subscriptions'
 import { API, graphqlOperation } from 'aws-amplify'
+import { getChatRoom } from '../../graphql/queries'
 dayjs.extend(relativeTime)
 
 const ChatListItem = ({ chat }) => {
   const [user, setUser] = useState()
   const navigation = useNavigation()
   const [chatRoom, setChatRoom] = useState(chat)
-
+  const [chatName, setChatName] = useState("");
   useEffect(() => {
     const getAuthUser = async () => {
       const userAutenticated = await Auth.currentAuthenticatedUser()
@@ -23,8 +24,20 @@ const ChatListItem = ({ chat }) => {
 
       setUser(usertoSet?.user)
     }
+    const fetchChatRoom = async () => {
+      
+      const result = await API.graphql(
+        graphqlOperation(getChatRoom, { id: chatRoom?.id })
+      );
+      console.log(result.data?.getChatRoom)
+      setChatName(result.data?.getChatRoom?.name);
+    
+    };
     getAuthUser()
+    fetchChatRoom();
   }, [])
+
+  
 
   // fetch Chat Room
   useEffect(() => {
@@ -49,7 +62,7 @@ const ChatListItem = ({ chat }) => {
       onPress={() =>
         navigation.navigate('Chat', {
           id: chatRoom?.id,
-          name: user?.name ?? ' ',
+          name: chatName ?? ' ',
         })
       }
       style={styles.container}
@@ -59,13 +72,13 @@ const ChatListItem = ({ chat }) => {
         source={{
           uri:
             user?.image ??
-            'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg',
+           'https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg',
         }}
       />
       <View style={styles.content}>
         <View style={styles.messageInfo}>
           <Text numberOfLines={1} style={styles.name}>
-            {chatRoom.name || user?.name}
+            {chatName || user?.name}
           </Text>
           <Text style={styles.date}>
             {chatRoom?.LastMessage?.createdAt

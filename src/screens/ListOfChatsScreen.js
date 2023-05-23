@@ -18,7 +18,6 @@ const ListOfChatsScreen = () => {
         new Date(r2.chatRoom?.updatedAt) - new Date(r1.chatRoom?.updatedAt)
     )
     setChatRooms(sortedRooms)
-
   }
 
   useEffect(() => {

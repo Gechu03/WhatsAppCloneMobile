@@ -14,6 +14,7 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { createUser } from '../../graphql/mutations'
 import { getUser } from '../../graphql/queries'
 import NewGroupScreen from '../../screens/NewGroupScreen'
+import GroupInfoScreen from '../../screens/GroupInfoScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -83,6 +84,7 @@ const Navigator = () => {
             />
             <Stack.Screen name="Chat" component={ChatSceen} />
             <Stack.Screen name="New Group" component={NewGroupScreen} />
+            <Stack.Screen name="Group Info" component={GroupInfoScreen} />
             <Stack.Screen name="Contacts" component={ContactsScreen} />
             <Stack.Screen
               name="SignIn"

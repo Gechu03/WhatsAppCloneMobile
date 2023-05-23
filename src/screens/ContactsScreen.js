@@ -10,6 +10,8 @@ import { useNavigation } from '@react-navigation/native'
 import { createChatRoom, createChatRoomUser } from '../graphql/mutations'
 import { getChatCommonRoom } from '../CustomQueries/functions'
 import ContactListItem from '../components/atoms/contactsListItem'
+import { StyleSheet } from 'react-native'
+
 const ContactsScreen = () => {
   const navigation = useNavigation()
   const [users, setUsers] = useState([])
@@ -58,6 +60,7 @@ const ContactsScreen = () => {
 
   return (
     <FlatList
+    style={styles.container}
       data={users}
       renderItem={({ item }) => (
         <ContactListItem
@@ -95,5 +98,10 @@ const ContactsScreen = () => {
     />
   )
 }
+
+const styles = StyleSheet.create({
+  container: { backgroundColor: 'white' },
+ 
+})
 
 export default ContactsScreen

@@ -13,7 +13,7 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { getChatRoom, listMessagesByChatRoom } from '../graphql/queries'
 import { ActivityIndicator } from 'react-native'
 import { onCreateMessage, onUpdateChatRoom } from '../graphql/subscriptions'
-
+import { Feather } from '@expo/vector-icons'
 const ChatScreen = () => {
   const route = useRoute()
   const navigation = useNavigation()
@@ -21,6 +21,7 @@ const ChatScreen = () => {
   const [messages, setMessages] = useState([])
 
   const chatRoomId = route.params
+  console.log(chatRoomId)
   // recibe chatRoom
   useEffect(() => {
     API.graphql(
@@ -73,8 +74,13 @@ const ChatScreen = () => {
   }, [chatRoomId.id])
 
   useEffect(() => {
-    navigation.setOptions({ title: route?.params?.name })
-  }, [route.params.name])
+    navigation.setOptions({
+      title: route?.params?.name,
+      headerRight: () => (
+        <Feather name="more-vertical" size={24} color="gray" onPress={() => navigation.navigate("Group Info", {id:chatRoomId.id })} />
+      ),
+    })
+  }, [route.params.name, chatRoomId.id])
 
   if (!chatRoom) {
     return <ActivityIndicator />

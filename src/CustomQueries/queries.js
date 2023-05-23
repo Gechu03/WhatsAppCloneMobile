@@ -27,3 +27,38 @@ query GetUser($id: ID!) {
    }
  }
  `
+
+ export const getChatRoom = /* GraphQL */ `
+  query GetChatRoom($id: ID!) {
+    getChatRoom(id: $id) {
+      id
+      updatedAt
+      name
+      UsersChatRooms {
+        items {
+          id
+          chatRoomId
+          userId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          user {
+            id
+            name
+            status
+            image
+          }
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      _version
+      _deleted
+      _lastChangedAt
+      chatRoomLastMessageId
+    }
+  }
+`;

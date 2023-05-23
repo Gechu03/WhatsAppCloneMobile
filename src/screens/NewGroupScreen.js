@@ -3,7 +3,7 @@ import { TextInput } from 'react-native'
 import { StyleSheet } from 'react-native'
 import ContactListItem from '../components/atoms/contactsListItem'
 import { useNavigation } from '@react-navigation/native'
-import { API, graphqlOperation,Auth } from 'aws-amplify'
+import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { listUsers } from '../graphql/queries'
 import { View } from 'react-native'
 import { FlatList } from 'react-native'
@@ -48,7 +48,7 @@ function NewGroupScreen() {
     }
 
     const newChatRoomData = await API.graphql(
-      graphqlOperation(createChatRoom, { input: {name:chatName} })
+      graphqlOperation(createChatRoom, { input: { name: chatName } })
     )
 
     if (!newChatRoomData?.data?.createChatRoom) {
@@ -73,8 +73,8 @@ function NewGroupScreen() {
         input: { chatRoomId: newChatRoom.id, userId: AuthUser.attributes.sub },
       })
     )
-   setSelectedUsersID([]);
-   setName("");
+    setSelectedUsersID([])
+    setName('')
     navigation.navigate('Chat', { id: newChatRoom.id, name: chatName })
   }
 
