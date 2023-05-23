@@ -56,13 +56,13 @@ const ChatListItem = ({ chat }) => {
     return () => subscription.unsubscribe()
   }, [chat.id])
 
-
+ 
   return (
     <Pressable
       onPress={() =>
         navigation.navigate('Chat', {
           id: chatRoom?.id,
-          name: chatName ?? ' ',
+          name: chatName ?? user?.name ?? 'Default Name',
         })
       }
       style={styles.container}
@@ -78,7 +78,7 @@ const ChatListItem = ({ chat }) => {
       <View style={styles.content}>
         <View style={styles.messageInfo}>
           <Text numberOfLines={1} style={styles.name}>
-            {chatName || user?.name}
+            {chatName ?? user?.name}
           </Text>
           <Text style={styles.date}>
             {chatRoom?.LastMessage?.createdAt

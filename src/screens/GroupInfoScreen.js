@@ -35,7 +35,6 @@ const ChatRoomInfo = () => {
   useEffect(() => {
     fetchChatRoom();
 
-    // Subscribe to onUpdateChatRoom
     const subscription = API.graphql(
       graphqlOperation(onUpdateChatRoom, {
         filter: { id: { eq: chatroomID } },
@@ -50,7 +49,6 @@ const ChatRoomInfo = () => {
       error: (error) => console.warn(error),
     });
 
-    // Stop receiving data updates from the subscription
     return () => subscription.unsubscribe();
   }, [chatroomID]);
 
@@ -90,11 +88,7 @@ const ChatRoomInfo = () => {
     <View style={styles.container}>
       <Text style={styles.title}>{chatRoom.name}</Text>
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+        style={styles.view}
       >
         <Text style={styles.sectionTitle}>{users.length} Participants</Text>
         <Text
@@ -126,6 +120,11 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
   },
+  view:{
+   flexDirection: "row",
+   justifyContent: "space-between",
+   alignItems: "center",
+ },
   title: {
     fontWeight: "bold",
     fontSize: 30,
