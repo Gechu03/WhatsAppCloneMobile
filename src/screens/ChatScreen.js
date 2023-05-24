@@ -21,7 +21,6 @@ const ChatScreen = () => {
   const [messages, setMessages] = useState([])
 
   const chatRoomId = route.params
-  console.log(chatRoomId)
   // recibe chatRoom
   useEffect(() => {
     API.graphql(
@@ -77,7 +76,14 @@ const ChatScreen = () => {
     navigation.setOptions({
       title: route?.params?.name,
       headerRight: () => (
-        <Feather name="more-vertical" size={24} color="gray" onPress={() => navigation.navigate("Group Info", {id:chatRoomId.id })} />
+        <Feather
+          name="more-vertical"
+          size={24}
+          color="gray"
+          onPress={() =>
+            navigation.navigate('Group Info', { id: chatRoomId.id })
+          }
+        />
       ),
     })
   }, [route.params.name, chatRoomId.id])

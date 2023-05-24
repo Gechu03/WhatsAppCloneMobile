@@ -14,6 +14,7 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { createUser } from '../../graphql/mutations'
 import { getUser } from '../../graphql/queries'
 import NewGroupScreen from '../../screens/NewGroupScreen'
+import AddContactsToGroupScreen from '../../screens/AddContactsToGroupScreen'
 import GroupInfoScreen from '../../screens/GroupInfoScreen'
 
 const Stack = createNativeStackNavigator()
@@ -44,10 +45,10 @@ const Navigator = () => {
     if (userData.data.getUser) {
       return
     }
-
+    
     const newUser = {
       id: user.attributes.sub,
-      name: user.attributes.phone_name ?? 'Default name',
+      name: user.attributes.phone_name ?? user.attributes.email ?? 'Default name',
       status: 'Hey, I am ussing WhatsAppTFG',
     }
 
@@ -85,6 +86,10 @@ const Navigator = () => {
             <Stack.Screen name="Chat" component={ChatSceen} />
             <Stack.Screen name="New Group" component={NewGroupScreen} />
             <Stack.Screen name="Group Info" component={GroupInfoScreen} />
+            <Stack.Screen
+              name="Add Contacts"
+              component={AddContactsToGroupScreen}
+            />
             <Stack.Screen name="Contacts" component={ContactsScreen} />
             <Stack.Screen
               name="SignIn"
@@ -126,6 +131,12 @@ const Navigator = () => {
             />
             <Stack.Screen name="Chat" component={ChatSceen} />
             <Stack.Screen name="Contacts" component={ContactsScreen} />
+            <Stack.Screen name="New Group" component={NewGroupScreen} />
+            <Stack.Screen name="Group Info" component={GroupInfoScreen} />
+            <Stack.Screen
+              name="Add Contacts"
+              component={AddContactsToGroupScreen}
+            />
           </>
         )}
       </Stack.Navigator>

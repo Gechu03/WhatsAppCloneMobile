@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import {
   StyleSheet,
   FlatList,
@@ -6,34 +6,34 @@ import {
   Text,
   ActivityIndicator,
   Alert,
-} from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
+} from 'react-native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 
-import { API, graphqlOperation } from "aws-amplify";
-import { onUpdateChatRoom } from "../graphql/subscriptions";
-import { deleteChatRoomUser } from "../graphql/mutations";
-import ContactListItem from "../components/atoms/contactsListItem";
-import { getChatRoom } from "../CustomQueries/queries"; 
+import { API, graphqlOperation } from 'aws-amplify'
+import { onUpdateChatRoom } from '../graphql/subscriptions'
+import { deleteChatRoomUser } from '../graphql/mutations'
+import ContactListItem from '../components/atoms/contactsListItem'
+import { getChatRoom } from '../CustomQueries/queries'
 
 const ChatRoomInfo = () => {
-  const [chatRoom, setChatRoom] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const route = useRoute();
-  const navigation = useNavigation();
+  const [chatRoom, setChatRoom] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const route = useRoute()
+  const navigation = useNavigation()
 
-  const chatroomID = route.params.id;
+  const chatroomID = route.params.id
 
   const fetchChatRoom = async () => {
-    setLoading(true);
+    setLoading(true)
     const result = await API.graphql(
       graphqlOperation(getChatRoom, { id: chatroomID })
-    );
-    setChatRoom(result.data?.getChatRoom);
-    setLoading(false);
-  };
+    )
+    setChatRoom(result.data?.getChatRoom)
+    setLoading(false)
+  }
 
   useEffect(() => {
-    fetchChatRoom();
+    fetchChatRoom()
 
     const subscription = API.graphql(
       graphqlOperation(onUpdateChatRoom, {
@@ -44,56 +44,53 @@ const ChatRoomInfo = () => {
         setChatRoom((cr) => ({
           ...(cr || {}),
           ...value.data.onUpdateChatRoom,
-        }));
+        }))
       },
       error: (error) => console.warn(error),
-    });
+    })
 
-    return () => subscription.unsubscribe();
-  }, [chatroomID]);
+    return () => subscription.unsubscribe()
+  }, [chatroomID])
 
   const removeChatRoomUser = async (chatRoomUser) => {
     await API.graphql(
       graphqlOperation(deleteChatRoomUser, {
         input: { _version: chatRoomUser._version, id: chatRoomUser.id },
       })
-    );
-  };
+    )
+  }
 
   const onContactPress = (chatRoomUser) => {
     Alert.alert(
-      "Removing the user",
+      'Removing the user',
       `Are you sure you want to remove ${chatRoomUser.user.name} from this group`,
       [
         {
-          text: "Cancel",
-          style: "cancel",
+          text: 'Cancel',
+          style: 'cancel',
         },
         {
-          text: "Remove",
-          style: "destructive",
+          text: 'Remove',
+          style: 'destructive',
           onPress: () => removeChatRoomUser(chatRoomUser),
         },
       ]
-    );
-  };
-
-  if (!chatRoom) {
-    return <ActivityIndicator />;
+    )
   }
 
-  const users = chatRoom.UsersChatRooms.items.filter((item) => !item._deleted);
+  if (!chatRoom) {
+    return <ActivityIndicator />
+  }
+  const users = chatRoom.UsersChatRooms.items.filter((item) => !item._deleted)
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{chatRoom.name}</Text>
-      <View
-        style={styles.view}
-      >
+      <View style={styles.view}>
         <Text style={styles.sectionTitle}>{users.length} Participants</Text>
         <Text
-          onPress={() => navigation.navigate("Add Contacts", { chatRoom })}
-          style={{  color: "royalblue" }}
+          onPress={() => navigation.navigate('Add Contacts', { chatRoom })}
+          style={{ color: 'royalblue' }}
         >
           Invite friends
         </Text>
@@ -112,35 +109,33 @@ const ChatRoomInfo = () => {
         />
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
     flex: 1,
   },
-  view:{
-   flexDirection: "row",
-   justifyContent: "space-between",
-   alignItems: "center",
- },
+  view: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   title: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 30,
   },
   sectionTitle: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
     marginTop: 20,
   },
   section: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     marginVertical: 10,
   },
-});
+})
 
-
-
-export default ChatRoomInfo;
+export default ChatRoomInfo

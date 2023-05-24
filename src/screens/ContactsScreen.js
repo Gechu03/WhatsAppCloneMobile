@@ -60,7 +60,7 @@ const ContactsScreen = () => {
 
   return (
     <FlatList
-    style={styles.container}
+      style={styles.container}
       data={users}
       renderItem={({ item }) => (
         <ContactListItem
@@ -101,7 +101,6 @@ const ContactsScreen = () => {
 
 const styles = StyleSheet.create({
   container: { backgroundColor: 'white' },
- 
 })
 
 export default ContactsScreen

@@ -13,7 +13,9 @@ const ChatListItem = ({ chat }) => {
   const [user, setUser] = useState()
   const navigation = useNavigation()
   const [chatRoom, setChatRoom] = useState(chat)
-  const [chatName, setChatName] = useState("");
+  const [chatName, setChatName] = useState('')
+
+
   useEffect(() => {
     const getAuthUser = async () => {
       const userAutenticated = await Auth.currentAuthenticatedUser()
@@ -25,19 +27,14 @@ const ChatListItem = ({ chat }) => {
       setUser(usertoSet?.user)
     }
     const fetchChatRoom = async () => {
-      
       const result = await API.graphql(
         graphqlOperation(getChatRoom, { id: chatRoom?.id })
-      );
-      console.log(result.data?.getChatRoom)
-      setChatName(result.data?.getChatRoom?.name);
-    
-    };
+      )
+      setChatName(result.data?.getChatRoom?.name)
+    }
     getAuthUser()
-    fetchChatRoom();
+    fetchChatRoom()
   }, [])
-
-  
 
   // fetch Chat Room
   useEffect(() => {
@@ -55,8 +52,6 @@ const ChatListItem = ({ chat }) => {
 
     return () => subscription.unsubscribe()
   }, [chat.id])
-
- 
   return (
     <Pressable
       onPress={() =>
@@ -72,7 +67,7 @@ const ChatListItem = ({ chat }) => {
         source={{
           uri:
             user?.image ??
-           'https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg',
+            'https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg',
         }}
       />
       <View style={styles.content}>

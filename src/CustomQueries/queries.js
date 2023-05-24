@@ -28,7 +28,7 @@ query GetUser($id: ID!) {
  }
  `
 
- export const getChatRoom = /* GraphQL */ `
+export const getChatRoom = /* GraphQL */ `
   query GetChatRoom($id: ID!) {
     getChatRoom(id: $id) {
       id
@@ -61,4 +61,4 @@ query GetUser($id: ID!) {
       chatRoomLastMessageId
     }
   }
-`;
+`
