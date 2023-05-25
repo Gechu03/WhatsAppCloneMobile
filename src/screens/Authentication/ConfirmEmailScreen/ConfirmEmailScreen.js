@@ -6,24 +6,56 @@ import { useNavigation } from '@react-navigation/core'
 import { Auth } from 'aws-amplify'
 import { useRoute } from '@react-navigation/native'
 import { Alert } from 'react-native'
+import { API, graphqlOperation } from 'aws-amplify'
+import { getUser } from '../../../graphql/queries'
+import { createUser } from '../../../graphql/mutations'
 
 const ConfirmEmailScreen = () => {
   const route = useRoute()
   const [code, setCode] = useState('')
   const email = route?.params?.username
+  const password = route?.params?.password
   const [loading, setLoading] = useState(false)
   const navigation = useNavigation()
 
   const onConfirmPressed = async () => {
     setLoading(true)
     try {
-      const response = await Auth.confirmSignUp(email, code)
+      await Auth.confirmSignUp(email, code)
+      await Auth.signIn(email, password)
+      syncUser();
       navigation.navigate('Home')
     } catch (e) {
       Alert.alert('Error:', e.message)
     }
     setLoading(false)
   }
+
+  const syncUser = async () => {
+    const user = await Auth.currentAuthenticatedUser({
+      bypassCache: true,
+    })
+
+    const userData = await API.graphql(
+      graphqlOperation(getUser, { id: user.attributes.sub })
+    )
+
+    if (userData.data.getUser) {
+      return
+    }
+
+    const newUser = {
+      id: user.attributes.sub,
+      name:
+        user.attributes.phone_name ?? user.attributes.email ?? 'Default name',
+      status: 'Hey, I am ussing WhatsAppTFG',
+    }
+
+    const newUserResponse = API.graphql(
+      graphqlOperation(createUser, { input: newUser })
+    )
+  }
+
 
   const onSignInPress = () => {
     navigation.navigate('SignIn')

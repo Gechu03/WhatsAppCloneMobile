@@ -15,7 +15,6 @@ const ChatListItem = ({ chat }) => {
   const [chatRoom, setChatRoom] = useState(chat)
   const [chatName, setChatName] = useState('')
 
-
   useEffect(() => {
     const getAuthUser = async () => {
       const userAutenticated = await Auth.currentAuthenticatedUser()

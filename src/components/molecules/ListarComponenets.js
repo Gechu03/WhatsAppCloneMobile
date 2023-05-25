@@ -11,7 +11,7 @@ const ListarComponentes = ({ listaMensajes, tipo = 'chat', ...props }) => {
       data={listaMensajes}
       renderItem={({ item }) => <ChatListItem chat={item.chatRoom} />}
       style={styles.listadoChats}
-      keyExtractor={item => item.chatRoom.id}
+      keyExtractor={(item) => item.chatRoom.id}
       {...props}
     />
   ) : tipo === 'mensajes' ? (

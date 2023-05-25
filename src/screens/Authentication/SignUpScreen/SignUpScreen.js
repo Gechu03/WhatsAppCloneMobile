@@ -31,7 +31,7 @@ const SignUpScreen = () => {
     setLoading(true)
     try {
       const response = await Auth.signUp({ username, password })
-      navigation.navigate('ConfirmEmail', { username })
+      navigation.navigate('ConfirmEmail', { username, password })
       setLoading(false)
     } catch (e) {
       Alert.alert('Error:', e.message)

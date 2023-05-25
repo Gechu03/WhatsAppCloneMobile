@@ -22,10 +22,12 @@ function AddContactsToGroupScreen() {
   useEffect(() => {
     API.graphql(graphqlOperation(listUsers)).then((result) => {
       setUsers(
-        result.data.listUsers.items.filter((user) =>
-          !chatRoom.chatRoom.UsersChatRooms.items.some(
-            (chatRoomUser) => !chatRoomUser._deleted && user.id === chatRoomUser.userId
-          )
+        result.data.listUsers.items.filter(
+          (user) =>
+            !chatRoom.chatRoom.UsersChatRooms.items.some(
+              (chatRoomUser) =>
+                !chatRoomUser._deleted && user.id === chatRoomUser.userId
+            )
         )
       )
     })

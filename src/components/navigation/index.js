@@ -27,6 +27,8 @@ const Navigator = () => {
         bypassCache: true,
       })
 
+      console.log(authUser)
+
       setUser(authUser)
     } catch {
       setUser(null)
@@ -45,10 +47,11 @@ const Navigator = () => {
     if (userData.data.getUser) {
       return
     }
-    
+
     const newUser = {
       id: user.attributes.sub,
-      name: user.attributes.phone_name ?? user.attributes.email ?? 'Default name',
+      name:
+        user.attributes.phone_name ?? user.attributes.email ?? 'Default name',
       status: 'Hey, I am ussing WhatsAppTFG',
     }
 
@@ -76,69 +79,34 @@ const Navigator = () => {
       <Stack.Navigator
         screenOptions={{ headerStyle: { backgroundColor: 'whitesmoke' } }}
       >
-        {user ? (
-          <>
-            <Stack.Screen
-              name="Home"
-              component={TabNavigator}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen name="Chat" component={ChatSceen} />
-            <Stack.Screen name="New Group" component={NewGroupScreen} />
-            <Stack.Screen name="Group Info" component={GroupInfoScreen} />
-            <Stack.Screen
-              name="Add Contacts"
-              component={AddContactsToGroupScreen}
-            />
-            <Stack.Screen name="Contacts" component={ContactsScreen} />
-            <Stack.Screen
-              name="SignIn"
-              component={SignInScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignUp"
-              component={SignUpScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ConfirmEmail"
-              component={ConfirmEmailScreen}
-              options={{ headerShown: false }}
-            />
-          </>
-        ) : (
-          <>
-            <Stack.Screen
-              name="SignIn"
-              component={SignInScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignUp"
-              component={SignUpScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ConfirmEmail"
-              component={ConfirmEmailScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Home"
-              component={TabNavigator}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen name="Chat" component={ChatSceen} />
-            <Stack.Screen name="Contacts" component={ContactsScreen} />
-            <Stack.Screen name="New Group" component={NewGroupScreen} />
-            <Stack.Screen name="Group Info" component={GroupInfoScreen} />
-            <Stack.Screen
-              name="Add Contacts"
-              component={AddContactsToGroupScreen}
-            />
-          </>
-        )}
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ConfirmEmail"
+          component={ConfirmEmailScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={TabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Chat" component={ChatSceen} />
+        <Stack.Screen name="Contacts" component={ContactsScreen} />
+        <Stack.Screen name="New Group" component={NewGroupScreen} />
+        <Stack.Screen name="Group Info" component={GroupInfoScreen} />
+        <Stack.Screen
+          name="Add Contacts"
+          component={AddContactsToGroupScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

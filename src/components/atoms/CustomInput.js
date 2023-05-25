@@ -36,9 +36,9 @@ export const CustomInput = ({
       {required && !valid ? (
         <Text style={styles.required}>
           {type === 'email'
-            ? 'Email dont fill requisites'
+            ? 'Email doesnt fill requisites'
             : type === 'password'
-            ? 'Password dont fill the requisites'
+            ? 'Password doesnt fill the requisites'
             : 'Required'}
         </Text>
       ) : (

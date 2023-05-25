@@ -7,9 +7,9 @@ import { onCreateChatRoom, onUpdateChatRoom } from '../graphql/subscriptions'
 
 const ListOfChatsScreen = () => {
   const [chatRooms, setChatRooms] = useState([])
-  const [loading, setLoding] = useState(false);
+  const [loading, setLoding] = useState(false)
   const fetchChatRooms = async () => {
-    setLoding(true);
+    setLoding(true)
     const userAutenticated = await Auth.currentAuthenticatedUser()
     const response = await API.graphql(
       graphqlOperation(listChatRooms, { id: userAutenticated.attributes.sub })
@@ -18,17 +18,16 @@ const ListOfChatsScreen = () => {
 
     const sortedRooms = orderRooms(rooms)
     setChatRooms(sortedRooms)
-    setLoding(false);
+    setLoding(false)
   }
 
-  const orderRooms = (rooms) =>{
-    
+  const orderRooms = (rooms) => {
     const sortedRooms = rooms.sort(
       (r1, r2) =>
         new Date(r2.chatRoom?.updatedAt) - new Date(r1.chatRoom?.updatedAt)
     )
-    
-    return sortedRooms;
+
+    return sortedRooms
   }
 
   useEffect(() => {
@@ -63,7 +62,12 @@ const ListOfChatsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ListarComponentes listaMensajes={chatRooms} onRefresh={fetchChatRooms} refreshing={loading} tipo="chat" />
+      <ListarComponentes
+        listaMensajes={chatRooms}
+        onRefresh={fetchChatRooms}
+        refreshing={loading}
+        tipo="chat"
+      />
     </View>
   )
 }
