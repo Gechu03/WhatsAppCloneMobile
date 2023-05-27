@@ -21,15 +21,6 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Status"
-        component={NotImplementedScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="logo-whatsapp" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Create Group"
         component={NewGroupScreen}
         options={{
