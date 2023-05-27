@@ -10,6 +10,7 @@ Amplify.configure({...awsconfig,
 },});
 
 function App() {
+  console.disableYellowBox = true;
   return (
     <View style={styles.container}>
        <Navigator />
