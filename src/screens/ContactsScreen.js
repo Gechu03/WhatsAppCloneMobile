@@ -15,9 +15,13 @@ import { StyleSheet } from 'react-native'
 const ContactsScreen = () => {
   const navigation = useNavigation()
   const [users, setUsers] = useState([])
-  useEffect(() => {
+  useEffect(async () => {
+    const userAutenticated = await Auth.currentAuthenticatedUser()
+    const dominio = userAutenticated.attributes.email.split('@')[1];
+   console.log(dominio)
     API.graphql(graphqlOperation(listUsers)).then((result) => {
-      setUsers(result?.data?.listUsers?.items)
+      const users = result?.data?.listUsers?.items.filter((user) => user.name.split('@')[1] === dominio && user.name !== userAutenticated.attributes.email)
+      setUsers(users)
     })
   }, [])
 
