@@ -23,7 +23,7 @@ const ConfirmEmailScreen = () => {
     try {
       await Auth.confirmSignUp(email, code)
       await Auth.signIn(email, password)
-      syncUser();
+      syncUser()
       navigation.navigate('Home')
     } catch (e) {
       Alert.alert('Error:', e.message)
@@ -55,7 +55,6 @@ const ConfirmEmailScreen = () => {
       graphqlOperation(createUser, { input: newUser })
     )
   }
-
 
   const onSignInPress = () => {
     navigation.navigate('SignIn')

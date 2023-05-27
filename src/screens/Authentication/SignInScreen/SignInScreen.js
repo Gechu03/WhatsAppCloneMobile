@@ -29,11 +29,10 @@ const SignInScreen = () => {
     if (email.test(username) === false) {
       Alert.alert('Error:', 'Email dont match the requirements')
       return
-    }else if(password === '')
-  {
-    Alert.alert('Error:', 'User has to fill the password')
-    return
-  }
+    } else if (password === '') {
+      Alert.alert('Error:', 'User has to fill the password')
+      return
+    }
     setLoading(true)
     try {
       const response = await Auth.signIn(username, password)

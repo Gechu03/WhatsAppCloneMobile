@@ -27,7 +27,6 @@ const Navigator = () => {
         bypassCache: true,
       })
 
-
       setUser(authUser)
     } catch {
       setUser(null)

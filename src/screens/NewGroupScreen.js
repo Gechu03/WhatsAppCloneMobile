@@ -18,15 +18,22 @@ function NewGroupScreen() {
 
   const navigation = useNavigation()
 
-  useEffect(async () => {
-    const userAutenticated = await Auth.currentAuthenticatedUser()
-    const dominio = userAutenticated.attributes.email.split('@')[1];
-    API.graphql(graphqlOperation(listUsers)).then((result) => {
-      const users = result?.data?.listUsers?.items.filter((user) => user.name.split('@')[1] === dominio && user.name !== userAutenticated.attributes.email)
-      setUsers(users)
-    })
+  useEffect(() => {
+    const recibeUsuarios = async () => {
+      const userAutenticated = await Auth.currentAuthenticatedUser()
+      const dominio = userAutenticated.attributes.email.split('@')[1]
+      API.graphql(graphqlOperation(listUsers)).then((result) => {
+        const users = result?.data?.listUsers?.items.filter(
+          (user) =>
+            user.name.split('@')[1] === dominio &&
+            user.name !== userAutenticated.attributes.email
+        )
+        setUsers(users)
+      })
+    }
+
+    recibeUsuarios()
   }, [])
- 
 
   useEffect(() => {
     navigation.setOptions({
