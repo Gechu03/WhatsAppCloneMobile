@@ -19,18 +19,23 @@ function AddContactsToGroupScreen() {
   const route = useRoute()
   const chatRoom = route.params
 
+ 
+
   useEffect(() => {
+    const recibeUsuarios = async () => {
+      const userAutenticated = await Auth.currentAuthenticatedUser()
+      const dominio = userAutenticated.attributes.email.split('@')[1]
     API.graphql(graphqlOperation(listUsers)).then((result) => {
       setUsers(
         result.data.listUsers.items.filter(
           (user) =>
-            !chatRoom.chatRoom.UsersChatRooms.items.some(
-              (chatRoomUser) =>
-                !chatRoomUser._deleted && user.id === chatRoomUser.userId
-            )
+            user.name.split('@')[1] === dominio &&
+            user.name !== userAutenticated.attributes.email
         )
       )
     })
+    }
+    recibeUsuarios();
   }, [])
 
   useEffect(() => {
