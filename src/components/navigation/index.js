@@ -77,34 +77,69 @@ const Navigator = () => {
       <Stack.Navigator
         screenOptions={{ headerStyle: { backgroundColor: 'whitesmoke' } }}
       >
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ConfirmEmail"
-          component={ConfirmEmailScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={TabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Chat" component={ChatSceen} />
-        <Stack.Screen name="Contacts" component={ContactsScreen} />
-        <Stack.Screen name="New Group" component={NewGroupScreen} />
-        <Stack.Screen name="Group Info" component={GroupInfoScreen} />
-        <Stack.Screen
-          name="Add Contacts"
-          component={AddContactsToGroupScreen}
-        />
+       {user ? (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={TabNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Chat" component={ChatSceen} />
+            <Stack.Screen name="New Group" component={NewGroupScreen} />
+            <Stack.Screen name="Group Info" component={GroupInfoScreen} />
+            <Stack.Screen
+              name="Add Contacts"
+              component={AddContactsToGroupScreen}
+            />
+            <Stack.Screen name="Contacts" component={ContactsScreen} />
+            <Stack.Screen
+              name="SignIn"
+              component={SignInScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ConfirmEmail"
+              component={ConfirmEmailScreen}
+              options={{ headerShown: false }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="SignIn"
+              component={SignInScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ConfirmEmail"
+              component={ConfirmEmailScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={TabNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Chat" component={ChatSceen} />
+            <Stack.Screen name="Contacts" component={ContactsScreen} />
+            <Stack.Screen name="New Group" component={NewGroupScreen} />
+            <Stack.Screen name="Group Info" component={GroupInfoScreen} />
+            <Stack.Screen
+              name="Add Contacts"
+              component={AddContactsToGroupScreen}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   )
