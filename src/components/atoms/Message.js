@@ -3,20 +3,37 @@ import { View } from 'react-native'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import dayjs from 'dayjs'
 import { Text, StyleSheet } from 'react-native'
-import { Auth } from 'aws-amplify'
+import { API, Auth, graphqlOperation } from 'aws-amplify'
+import { getUser } from '../../graphql/queries'
 
 dayjs.extend(relativeTime)
 
 const Message = ({ mensaje }) => {
   const [isMe, setIsMe] = useState(false)
+  const [username, setUsername] = useState('');
   useEffect(() => {
+    
     const isMyMessage = async () => {
       const useAuth = await Auth.currentAuthenticatedUser()
       setIsMe(mensaje?.userID === useAuth.attributes.sub)
+      
+    }
+
+    const getUserFunc = async () => {
+
+      const userData = await API.graphql(
+        graphqlOperation(getUser, { id: mensaje?.userID })
+      )
+  
+      setUsername(userData.data.getUser.name)
     }
 
     isMyMessage()
+    getUserFunc();
   })
+
+
+  
 
   return (
     <View
@@ -28,8 +45,14 @@ const Message = ({ mensaje }) => {
         },
       ]}
     >
-      <Text>{mensaje?.text}</Text>
-      <Text style={styles.time}>{dayjs(mensaje?.createdAt).fromNow(true)}</Text>
+      
+      {!isMe ?
+      <Text style={styles.userName}> {username} </Text> : null}
+
+      <View>
+        <Text>{mensaje?.text}</Text>
+        <Text style={styles.time}>{dayjs(mensaje?.createdAt).fromNow(true)}</Text>
+      </View>
     </View>
   )
 }
@@ -50,9 +73,15 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     elevation: 2,
   },
+
+  userName:{
+    fontSize:12,
+    color: 'gray',
+    fontWeight: '300'
+  },
   time: {
     color: 'gray',
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
   },
 })
 
