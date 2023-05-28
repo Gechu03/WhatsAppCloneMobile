@@ -15,21 +15,25 @@ import { StyleSheet } from 'react-native'
 const ContactsScreen = () => {
   const navigation = useNavigation()
   const [users, setUsers] = useState([])
-  useEffect(() => {
-    const recibeUsuarios = async () => {
-      const userAutenticated = await Auth.currentAuthenticatedUser()
-      const dominio = userAutenticated.attributes.email.split('@')[1]
-      API.graphql(graphqlOperation(listUsers)).then((result) => {
-        const users = result?.data?.listUsers?.items.filter(
-          (user) =>
-            user.name.split('@')[1] === dominio &&
-            user.name !== userAutenticated.attributes.email
-        )
-        setUsers(users)
-      })
-    }
+  const [loading, setLoading] = useState(false)
+  const recibeUsuarios = async () => {
+    setLoading(true);
+    const userAutenticated = await Auth.currentAuthenticatedUser()
+    const dominio = userAutenticated.attributes.email.split('@')[1]
+    API.graphql(graphqlOperation(listUsers)).then((result) => {
+      const users = result?.data?.listUsers?.items.filter(
+        (user) =>
+          user.name.split('@')[1] === dominio &&
+          user.name !== userAutenticated.attributes.email
+      )
+      setUsers(users)
+    })
+    setLoading(false);
+  }
 
-    recibeUsuarios()
+  useEffect(() => {
+    
+    recibeUsuarios();
   }, [])
 
   const createAPrivateChatRoom = async (user) => {
@@ -73,6 +77,8 @@ const ContactsScreen = () => {
     <FlatList
       style={styles.container}
       data={users}
+      onRefresh={recibeUsuarios}
+      refreshing={loading}
       renderItem={({ item }) => (
         <ContactListItem
           onPress={() => createAPrivateChatRoom(item)}

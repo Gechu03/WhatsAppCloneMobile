@@ -15,23 +15,24 @@ function NewGroupScreen() {
   const [users, setUsers] = useState([])
   const [selectedUsersID, setSelectedUsersID] = useState([])
   const [chatName, setName] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigation = useNavigation()
-
+  const recibeUsuarios = async () => {
+    setLoading(true);
+    const userAutenticated = await Auth.currentAuthenticatedUser()
+    const dominio = userAutenticated.attributes.email.split('@')[1]
+    API.graphql(graphqlOperation(listUsers)).then((result) => {
+      const users = result?.data?.listUsers?.items.filter(
+        (user) =>
+          user.name.split('@')[1] === dominio &&
+          user.name !== userAutenticated.attributes.email
+      )
+      setUsers(users)
+    })
+    setLoading(false);
+  }
   useEffect(() => {
-    const recibeUsuarios = async () => {
-      const userAutenticated = await Auth.currentAuthenticatedUser()
-      const dominio = userAutenticated.attributes.email.split('@')[1]
-      API.graphql(graphqlOperation(listUsers)).then((result) => {
-        const users = result?.data?.listUsers?.items.filter(
-          (user) =>
-            user.name.split('@')[1] === dominio &&
-            user.name !== userAutenticated.attributes.email
-        )
-        setUsers(users)
-      })
-    }
-
     recibeUsuarios()
   }, [])
 
@@ -106,8 +107,11 @@ function NewGroupScreen() {
         value={chatName}
         onChangeText={setName}
         style={styles.input}
+       
       />
       <FlatList
+       onRefresh={recibeUsuarios}
+       refreshing={loading}
         data={users}
         renderItem={({ item }) => (
           <ContactListItem
