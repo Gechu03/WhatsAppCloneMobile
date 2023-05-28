@@ -19,7 +19,7 @@ function NewGroupScreen() {
 
   const navigation = useNavigation()
   const recibeUsuarios = async () => {
-    setLoading(true);
+    setLoading(true)
     const userAutenticated = await Auth.currentAuthenticatedUser()
     const dominio = userAutenticated.attributes.email.split('@')[1]
     API.graphql(graphqlOperation(listUsers)).then((result) => {
@@ -30,7 +30,7 @@ function NewGroupScreen() {
       )
       setUsers(users)
     })
-    setLoading(false);
+    setLoading(false)
   }
   useEffect(() => {
     recibeUsuarios()
@@ -107,11 +107,10 @@ function NewGroupScreen() {
         value={chatName}
         onChangeText={setName}
         style={styles.input}
-       
       />
       <FlatList
-       onRefresh={recibeUsuarios}
-       refreshing={loading}
+        onRefresh={recibeUsuarios}
+        refreshing={loading}
         data={users}
         renderItem={({ item }) => (
           <ContactListItem

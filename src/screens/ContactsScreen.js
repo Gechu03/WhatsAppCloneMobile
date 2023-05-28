@@ -17,7 +17,7 @@ const ContactsScreen = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const recibeUsuarios = async () => {
-    setLoading(true);
+    setLoading(true)
     const userAutenticated = await Auth.currentAuthenticatedUser()
     const dominio = userAutenticated.attributes.email.split('@')[1]
     API.graphql(graphqlOperation(listUsers)).then((result) => {
@@ -28,12 +28,11 @@ const ContactsScreen = () => {
       )
       setUsers(users)
     })
-    setLoading(false);
+    setLoading(false)
   }
 
   useEffect(() => {
-    
-    recibeUsuarios();
+    recibeUsuarios()
   }, [])
 
   const createAPrivateChatRoom = async (user) => {

@@ -77,7 +77,7 @@ const Navigator = () => {
       <Stack.Navigator
         screenOptions={{ headerStyle: { backgroundColor: 'whitesmoke' } }}
       >
-       {user ? (
+        {user ? (
           <>
             <Stack.Screen
               name="Home"
