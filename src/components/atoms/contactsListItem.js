@@ -14,7 +14,7 @@ const ContactListItem = ({
         source={{
           uri:
             user?.image ??
-            'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg',
+            'https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg',
         }}
       />
 

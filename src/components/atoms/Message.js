@@ -34,7 +34,7 @@ const Message = ({ mensaje }) => {
       style={[
         styles.container,
         {
-          backgroundColor: isMe ? '#DCF8C5' : 'white',
+          backgroundColor: isMe ? '#D9E2F3' : 'white',
           alignSelf: isMe ? 'flex-end' : 'flex-start',
         },
       ]}
