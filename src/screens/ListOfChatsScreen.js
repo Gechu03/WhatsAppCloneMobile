@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import ListarComponentes from '../components/molecules/ListarComponenets'
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { listChatRooms } from '../CustomQueries/queries'
-import { onCreateChatRoom, onUpdateChatRoom } from '../graphql/subscriptions'
+import { onCreateChatRoom, onDeleteChatRoomUser, onUpdateChatRoom } from '../graphql/subscriptions'
 
 const ListOfChatsScreen = () => {
   const [chatRooms, setChatRooms] = useState([])
@@ -44,6 +44,21 @@ const ListOfChatsScreen = () => {
 
     return () => subscription.unsubscribe()
   }, [])
+
+  useEffect(() => {
+    const subscription = API.graphql(
+      graphqlOperation(onDeleteChatRoomUser)
+    ).subscribe({
+      next: () => {
+        console.log('Estoy')
+        fetchChatRooms()
+      },
+      error: (err) => console.warn(err),
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
 
   useEffect(() => {
     const subscription = API.graphql(

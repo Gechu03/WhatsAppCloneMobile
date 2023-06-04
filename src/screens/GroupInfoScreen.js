@@ -8,19 +8,20 @@ import {
   Alert,
 } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
-
+import { Auth } from 'aws-amplify'
 import { API, graphqlOperation } from 'aws-amplify'
 import { onUpdateChatRoom } from '../graphql/subscriptions'
 import { deleteChatRoomUser } from '../graphql/mutations'
 import ContactListItem from '../components/atoms/contactsListItem'
 import { getChatRoom } from '../CustomQueries/queries'
+import { getUser } from '../graphql/queries'
 
 const ChatRoomInfo = () => {
   const [chatRoom, setChatRoom] = useState(null)
   const [loading, setLoading] = useState(false)
   const route = useRoute()
   const navigation = useNavigation()
-
+ 
   const chatroomID = route.params.id
 
   const fetchChatRoom = async () => {
@@ -53,11 +54,21 @@ const ChatRoomInfo = () => {
   }, [chatroomID])
 
   const removeChatRoomUser = async (chatRoomUser) => {
-   const response = await API.graphql(
+    const userAutenticated = await Auth.currentAuthenticatedUser()
+   await API.graphql(
       graphqlOperation(deleteChatRoomUser, {
         input: { _version: chatRoomUser._version, id: chatRoomUser.id },
       })
     )
+   const name =  await API.graphql(
+      graphqlOperation(getUser, {
+       id:userAutenticated.attributes.sub
+      })
+    )
+    console.log(name.data.getUser.name, chatRoomUser.user.name)
+    if(name.data.getUser.name, chatRoomUser.user.name){
+      navigation.navigate('Chats')
+    }
   }
 
   const onContactPress = (chatRoomUser) => {
