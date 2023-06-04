@@ -53,7 +53,7 @@ const ChatRoomInfo = () => {
   }, [chatroomID])
 
   const removeChatRoomUser = async (chatRoomUser) => {
-    await API.graphql(
+   const response = await API.graphql(
       graphqlOperation(deleteChatRoomUser, {
         input: { _version: chatRoomUser._version, id: chatRoomUser.id },
       })

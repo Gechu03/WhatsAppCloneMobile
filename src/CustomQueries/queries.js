@@ -4,9 +4,11 @@ query GetUser($id: ID!) {
      id
      ChatRoomsUsers {
        items {
+        _deleted
          chatRoom {
            id
            updatedAt
+           
            LastMessage {
              id
              createdAt

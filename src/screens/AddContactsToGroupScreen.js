@@ -36,7 +36,6 @@ function AddContactsToGroupScreen() {
           user?.name.split('@')[1] === dominio && user?.name !== userAutenticated?.attributes?.email
       )
 
-     console.log(users)
 
       setUsers(users)
     })

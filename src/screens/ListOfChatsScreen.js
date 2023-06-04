@@ -14,7 +14,9 @@ const ListOfChatsScreen = () => {
     const response = await API.graphql(
       graphqlOperation(listChatRooms, { id: userAutenticated.attributes.sub })
     )
-    const rooms = response?.data?.getUser?.ChatRoomsUsers?.items || []
+    const rooms = response?.data?.getUser?.ChatRoomsUsers?.items.filter(
+      (item) => !item._deleted
+      ) 
 
     const sortedRooms = orderRooms(rooms)
     setChatRooms(sortedRooms)
